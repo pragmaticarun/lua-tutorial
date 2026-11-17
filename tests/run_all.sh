@@ -239,7 +239,8 @@ host_probe() {
     love) HVER[$h]=$(love --version 2>&1 | awk '{print $2}')
           mkdir -p "$TMPD/loveprobe"
           printf 'function love.load() print(_VERSION .. " / " .. jit.version) love.event.quit() end\n' > "$TMPD/loveprobe/main.lua"
-          HLUA[$h]=$(timeout 60 xvfb-run -a love "$TMPD/loveprobe" 2>&1 | head -1) ;;
+          printf 'function love.conf(t) t.modules.audio = false t.modules.sound = false end\n' > "$TMPD/loveprobe/conf.lua"
+          HLUA[$h]=$(timeout 60 xvfb-run -a love "$TMPD/loveprobe" 2>/dev/null | grep -m1 '^Lua ') ;;
     luarocks) HVER[$h]=$(luarocks --version | head -1 | awk '{print $2}')
               HLUA[$h]=$(luarocks config lua_version 2>/dev/null | sed 's/^/Lua /') ;;
     busted) HVER[$h]=$(busted --version); HLUA[$h]="runs on Lua 5.5, Lua 5.4 and LuaJIT, one rocks tree each" ;;

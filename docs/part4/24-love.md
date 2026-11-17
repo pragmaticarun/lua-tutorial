@@ -53,6 +53,10 @@ That loop *is* the function `love.run`, written in Lua, and you can replace it.
 --8<-- "examples/24-love/callbacks/main.lua"
 ```
 
+```lua title="examples/24-love/callbacks/conf.lua"
+--8<-- "examples/24-love/callbacks/conf.lua"
+```
+
 ```bash title="examples/24-love/callbacks.test.sh"
 --8<-- "examples/24-love/callbacks.test.sh"
 ```

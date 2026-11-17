@@ -6,6 +6,7 @@ D=$(mktemp -d); { printf 'local r = (function()\n%s\nend)()\nio.write(r, "\\n")\
 nvim --headless --clean -l "$D/p.lua"; rm -rf "$D"
 echo "LÖVE:"
 D=$(mktemp -d); { printf 'local r = (function()\n%s\nend)()\n' "$PROBE"; echo 'function love.load() print(r) love.event.quit() end'; } > "$D/main.lua"
+echo 'function love.conf(t) t.modules.audio = false t.modules.sound = false end' > "$D/conf.lua"
 xvfb-run -a love "$D"; rm -rf "$D"
 echo "OpenResty (resty CLI):"
 D=$(mktemp -d); { printf 'local r = (function()\n%s\nend)()\nprint(r)\n' "$PROBE"; } > "$D/p.lua"
