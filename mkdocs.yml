@@ -120,7 +120,14 @@ nav:
       - "26. OpenResty": part4/26-openresty.md
       - "27. mpv Scripting": part4/27-mpv.md
       - "28. Tooling and CI": part4/28-tooling.md
-  - Projects: projects/index.md
+  - Projects:
+      - projects/index.md
+      - "P1. CLI Log Analyzer": projects/p1-log-analyzer.md
+      - "P2. mpv Bookmark Manager": projects/p2-mpv-bookmarks.md
+      - "P3. Neovim Notes Plugin": projects/p3-notes-nvim.md
+      - "P4. LÖVE Arcade Game": projects/p4-love-arcade.md
+      - "P5. C++ Media Pipeline": projects/p5-cpp-pipeline.md
+      - "P6. Bonus: Rust Host": projects/p6-rust-pipeline.md
   - Version Differences: version-differences.md
   - Glossary: glossary.md
 

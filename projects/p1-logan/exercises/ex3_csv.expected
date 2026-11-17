@@ -1,0 +1,5 @@
+list,key,count
+paths,"/a,b",1
+paths,"/say ""hi""",1
+ips,10.0.0.1,2
+components,db,1

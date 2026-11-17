@@ -1,0 +1,19 @@
+combined:
+  agent     mpv 0.42.0
+  bytes     0
+  ip        203.0.113.7
+  kind      access
+  method    GET
+  minute    2026-11-17 10:04
+  path      /api/streams/42
+  referer   -
+  status    304
+app:
+  component db
+  kind      app
+  level     WARN
+  message   slow query (took 812ms)
+  minute    2026-11-17 10:00
+  ms        812
+forced format:
+  error: not a combined log line

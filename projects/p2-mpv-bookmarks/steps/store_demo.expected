@@ -1,0 +1,13 @@
+Bookmark 1	Bookmark 2	Demo starts
+61.3 ->	Demo starts	moved
+  1. 00:02.0  Bookmark 2
+> 2. 01:01.3  Demo starts
+  3. 02:05.2  Bookmark 1
+next after 2.1:	Demo starts
+next after 2.0:	Demo starts	(skips the one we are on)
+prev before 2.0:	nil
+1:02:05.0	00:00.0
+2.000	Bookmark 2
+61.300	Demo starts
+125.250	Bookmark 1
+round trip:	3	Bookmark 1

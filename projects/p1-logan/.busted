@@ -1,0 +1,5 @@
+-- busted settings: test the source tree, not an installed rock
+return {
+  _all = { lpath = "src/?.lua;src/?/init.lua" },
+  default = { ROOT = { "spec" } },
+}

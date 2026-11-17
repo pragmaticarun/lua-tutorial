@@ -1,0 +1,6 @@
+#!/usr/bin/env lua
+-- The installed command. LuaRocks puts a wrapper in front of this that sets
+-- package.path to the rock tree; from a checkout, run it with
+--   LUA_PATH="src/?.lua;src/?/init.lua;;" lua bin/logan ...
+local logan = require("logan")
+os.exit(logan.main(arg, io.stdout, io.stderr, io.stdin))

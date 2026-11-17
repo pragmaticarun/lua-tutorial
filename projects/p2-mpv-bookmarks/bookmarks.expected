@@ -1,0 +1,44 @@
+=== session 1
+[bookmarks] loaded 0 bookmarks for talk.mkv
+[driver] bookmarks script ready, 0 bookmarks
+[driver] press ctrl+b at 2.00
+[bookmarks] added bookmark Bookmark 1 at 00:02.0
+[bookmarks] added bookmark Credits at 00:07.5
+[driver] press ctrl+b at 4.00
+[bookmarks] added bookmark Bookmark 3 at 00:04.0
+[driver] press ctrl+b at 4.20
+[bookmarks] moved bookmark Bookmark 3 at 00:04.2
+[driver] press ctrl+l at 4.20
+[bookmarks] 3 bookmarks
+[bookmarks]   1. 00:02.0  Bookmark 1
+[bookmarks] > 2. 00:04.2  Bookmark 3
+[bookmarks]   3. 00:07.5  Credits
+[driver] press ctrl+n at 4.20
+[bookmarks] next: Credits (00:07.5)
+[driver] now at 7.52
+[driver] press ctrl+p at 7.52
+[bookmarks] previous: Bookmark 3 (00:04.2)
+[driver] now at 4.20
+[driver] press ctrl+p at 4.20
+[bookmarks] previous: Bookmark 1 (00:02.0)
+[driver] now at 2.00
+[driver] press ctrl+p at 2.00
+[bookmarks] no previous bookmark
+[driver] press ctrl+d at 2.00
+[bookmarks] deleted Bookmark 1
+[driver] press ctrl+e at 2.00
+[bookmarks] exported 2 bookmarks as chapters
+[driver] chapter 1: 4.20 Bookmark 3
+[driver] chapter 2: 7.52 Credits
+[mpv exit 0]
+=== the file it saved: talk.mkv.bookmarks
+4.200	Bookmark 3
+7.520	Credits
+=== session 2
+[bookmarks] loaded 2 bookmarks for talk.mkv
+[driver] bookmarks script ready, 2 bookmarks
+[driver] press ctrl+l at 0.00
+[bookmarks] 2 bookmarks
+[bookmarks] > 1. 00:04.2  Bookmark 3
+[bookmarks]   2. 00:07.5  Credits
+[mpv exit 0]

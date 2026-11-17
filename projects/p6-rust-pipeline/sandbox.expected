@@ -1,0 +1,10 @@
+diff C++ host (<) and Rust host (>):
+29,30c29
+<   [keep_frame.lua] previous frame is	Frame(expired)
+<   keep_frame.lua  FAILED: hostile/keep_frame.lua:7: frame used after process() returned (unloaded)
+---
+>   keep_frame.lua  FAILED: userdata has been destructed (unloaded)
+41c40
+<   -> FAILED: could not set up a Lua state within the memory limit
+---
+>   -> FAILED: memory error: not enough memory

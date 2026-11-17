@@ -1,0 +1,51 @@
+$ logan --top 3 data/access.log
+lines: 41  parsed: 40  unparsed: 1  errors: 11
+first unparsed lines: data/access.log:18
+status classes: 2xx=17 3xx=4 4xx=8 5xx=11  bytes: 1561452
+
+top paths
+  /login                       12
+  /                             6
+  /api/streams/42               6
+
+top clients
+  198.51.100.5                 15
+  192.0.2.44                    7
+  198.51.100.23                 7
+
+per minute
+  2026-11-17 10:00    7 #######################
+  2026-11-17 10:01    7 #######################
+  2026-11-17 10:02    8 ###########################
+  2026-11-17 10:03    9 ##############################
+  2026-11-17 10:04    9 ##############################
+[exit 0]
+
+$ logan -n 2 -s 4xx,500 -o json data/access.log
+{"bytes":701735,"classes":{"4xx":8,"5xx":6},"errors":6,"levels":[],"lines":15,"parsed":14,"per_minute":{"2026-11-17 10:00":3,"2026-11-17 10:01":3,"2026-11-17 10:02":5,"2026-11-17 10:03":1,"2026-11-17 10:04":2},"top_clients":[{"count":5,"key":"198.51.100.23"},{"count":5,"key":"198.51.100.5"}],"top_paths":[{"count":4,"key":"/login"},{"count":3,"key":"/"}],"unparsed_lines":["data/access.log:18"]}
+[exit 0]
+
+$ grep ERROR data/app.log | logan -n 2 -
+lines: 4  parsed: 4  unparsed: 0  errors: 4
+
+levels
+  ERROR                         4
+
+components
+  db                            2
+  transcoder                    2
+
+per minute
+  2026-11-17 10:00    1 ###############
+  2026-11-17 10:02    1 ###############
+  2026-11-17 10:03    2 ##############################
+[exit 0]
+
+$ logan --top lots data/access.log
+logan: option --top expects a number, got 'lots'
+try 'logan --help'
+[exit 2]
+$ logan -n 1 data/app.log nope.log   # first two lines and the exit status
+logan: nope.log: No such file or directory
+lines: 24  parsed: 24  unparsed: 0  errors: 4
+[exit 1]

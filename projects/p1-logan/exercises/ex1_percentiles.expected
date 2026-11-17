@@ -1,0 +1,4 @@
+component      n    p50    p95    max
+db             7  410ms  823ms  823ms
+http           2   33ms  262ms  262ms
+transcoder     2  566ms  787ms  787ms

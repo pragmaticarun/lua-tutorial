@@ -31,6 +31,15 @@
 # $REDIS_PORT for the run and flushed before every redis test. Missing hosts
 # are reported as skipped (and named in the badge), never faked.
 #
+# Projects: projects/pN-slug/ holds a complete project. Lua files under its
+# steps/ and exercises/ directories run on the interpreters like examples;
+# "-- host: nvim" files anywhere under projects/ run in Neovim; its *.test.sh
+# drivers work like host tests, except that a driver with a
+# "# interp: 5.5, 5.4, jit" header runs once per listed interpreter (with
+# LUA, LUA_ID, LUA_PREFIX, LUA_INC, LUA_LIBDIR, LUA_LIBNAME, BUSTED exported)
+# and counts as a "proj" result for that interpreter. Its expected output is
+# name.expected or name.<id>.expected, as for examples.
+#
 # Environment: LUA55, LUA54, LUAJIT (interpreters), CC, CXX, CARGO, REDIS_PORT,
 #              OR_PORT (first OpenResty port).
 #   BLESS=1     write a missing name.expected from the first target's output
@@ -50,7 +59,7 @@ WARN="-Wall -Wextra -Werror"
 declare -A BIN=( [5.5]="${LUA55:-lua5.5}" [5.4]="${LUA54:-lua5.4}" [jit]="${LUAJIT:-luajit}" )
 declare -A FEATURE=( [5.5]=lua55 [5.4]=lua54 [jit]=luajit )
 IDS=(5.5 5.4 jit)
-LANGS=(lua c c++ rust)
+LANGS=(lua c c++ rust proj)
 declare -A PASS FAIL SKIP LPASS LFAIL LSKIP
 for id in "${IDS[@]}"; do PASS[$id]=0; FAIL[$id]=0; SKIP[$id]=0; done
 FAILURES=()
@@ -58,7 +67,7 @@ FAILURES=()
 mkdir -p tests/results
 VERS=tests/results/versions.txt
 : > "$VERS"
-declare -A INC LIBDIR LIBNAME
+declare -A INC LIBDIR LIBNAME PREFIXD
 for id in "${IDS[@]}"; do
   if ! command -v "${BIN[$id]}" >/dev/null 2>&1; then
     echo "error: interpreter '${BIN[$id]}' ($id) not found" >&2; exit 2
@@ -67,6 +76,7 @@ for id in "${IDS[@]}"; do
   echo "$id	$v" >> "$VERS"
   # headers and static library live next to the interpreter: PREFIX/bin/lua
   prefix=$(dirname "$(dirname "$(readlink -f "$(command -v "${BIN[$id]}")")")")
+  PREFIXD[$id]=$prefix
   if [[ $id == jit ]]; then
     INC[$id]=$prefix/include/luajit-2.1; LIBDIR[$id]=$prefix/lib; LIBNAME[$id]=luajit-5.1
   else
@@ -85,7 +95,8 @@ targets_of() {
   if [[ -z "$t" ]]; then echo "5.5 5.4 jit"; else echo "$t" | tr ',' ' '; fi
 }
 matches() { [[ -z "$FILTER" || "$1" == *"$FILTER"* ]]; }
-lesson_of() { local l=${1#examples/}; echo "${l%%/*}"; }
+lesson_of() { local l=${1#examples/}; l=${l#projects/}; echo "${l%%/*}"; }
+PROJ_LUA_DIRS=$(ls -d projects/*/steps projects/*/exercises 2>/dev/null)
 
 skip() {     # skip ID LESSON LANG
   SKIP[$1]=$(( SKIP[$1] + 1 )); LS["$2|$1"]=$(( ${LS["$2|$1"]:-0} + 1 ))
@@ -175,7 +186,7 @@ while IFS= read -r rel; do
        timeout 20 "${BIN[$id]}" "$base.lua" < "${stdin_file:-/dev/null}") > "$TMPD/out" 2> "$TMPD/err"; rc=$?
     check "$id" "$lesson" lua "$rel" "$dir/$base" "$tg" $rc "$TMPD/out" "$TMPD/err"
   done
-done < <(find examples \( -name build -o -name target -o -name lua_modules \) -prune -o -name '*.lua' -print | sort)
+done < <(find examples $PROJ_LUA_DIRS \( -name build -o -name target -o -name lua_modules \) -prune -o -name '*.lua' -print | sort)
 
 # ---------------------------------------------------------------- Rust
 while IFS= read -r toml; do
@@ -255,12 +266,15 @@ host_probe() {
   return 0
 }
 
-host_tests=$(find examples \( -name build -o -name target -o -name lua_modules \) -prune -o -name '*.test.sh' -print | sort)
-host_lua=$(find examples \( -name build -o -name target -o -name lua_modules \) -prune -o -name '*.lua' -print | sort |
+PRUNE=( \( -name build -o -name target -o -name lua_modules -o -name node_modules \) -prune -o )
+all_drivers=$(find examples projects "${PRUNE[@]}" -name '*.test.sh' -print 2>/dev/null | sort)
+interp_tests=$(for f in $all_drivers; do head -5 "$f" | grep -q '^# *interp:' && echo "$f"; done)
+host_tests=$(for f in $all_drivers; do head -5 "$f" | grep -q '^# *interp:' || echo "$f"; done)
+host_lua=$(find examples projects "${PRUNE[@]}" -name '*.lua' -print 2>/dev/null | sort |
            while read -r f; do [[ "$(header "$f" host)" == nvim ]] && echo "$f"; done)
 REDIS_PID=""
-if [[ -n "$host_tests$host_lua" ]]; then
-  if grep -lq '^# *host:.*redis' $host_tests 2>/dev/null && command -v redis-server >/dev/null 2>&1; then
+if [[ -n "$host_tests$host_lua$interp_tests" ]]; then
+  if grep -lq '^# *host:.*redis' $all_drivers 2>/dev/null && command -v redis-server >/dev/null 2>&1; then
     redis-server --port "$REDIS_PORT" --save '' --appendonly no --daemonize yes \
       --pidfile "$TMPD/redis.pid" --logfile "$TMPD/redis.log" --dir "$TMPD" >/dev/null
     for _ in $(seq 50); do redis-cli -p "$REDIS_PORT" PING >/dev/null 2>&1 && break; sleep 0.1; done
@@ -318,20 +332,43 @@ for rel in $host_tests; do
   hcheck "$first" "$lesson" "$rel" "$dir/$base" $rc
 done
 
+# ---------------------------------------------------------------- Project drivers
+declare -A BUSTEDBIN=( [5.5]=busted5.5 [5.4]=busted [jit]=busted-jit )
+for rel in $interp_tests; do
+  matches "$rel" || continue
+  dir=$(dirname "$rel"); base=$(basename "$rel" .test.sh); lesson=$(lesson_of "$rel")
+  tg=" $(head -5 "$rel" | sed -n 's/^# *interp: *//p' | tr ',' ' ') "
+  hosts=$(head -5 "$rel" | sed -n 's/^# *host: *//p' | tr ',' ' ')
+  missing=""; for h in $hosts; do have_host "$h" || missing="$missing $h"; done
+  for id in "${IDS[@]}"; do
+    if [[ "$tg" != *" $id "* ]]; then skip "$id" "$lesson" proj; continue; fi
+    if [[ -n "$missing" ]]; then
+      skip "$id" "$lesson" proj; echo "SKIP [$id] $rel (not installed:$missing)"; continue
+    fi
+    if [[ " $hosts " == *" redis "* ]]; then redis-cli -p "$REDIS_PORT" FLUSHALL >/dev/null; fi
+    (cd "$dir" && LUA=$(readlink -f "$(command -v "${BIN[$id]}")") LUA_ID=$id LUA_PREFIX="${PREFIXD[$id]}" \
+       LUA_INC="${INC[$id]}" LUA_LIBDIR="${LIBDIR[$id]}" LUA_LIBNAME="${LIBNAME[$id]}" \
+       BUSTED="${BUSTEDBIN[$id]}" timeout 1200 bash "$base.test.sh" < /dev/null) > "$TMPD/out" 2> "$TMPD/err"; rc=$?
+    check "$id" "$lesson" proj "$rel" "$dir/$base" "$tg" $rc "$TMPD/out" "$TMPD/err"
+  done
+done
+
 # Badge snippets: one per lesson, listing only the interpreters on which
 # every applicable example passed.
 mkdir -p includes/badges
 if [[ -z "$FILTER" ]]; then
-  for d in examples/*/; do
-    lesson=$(basename "$d")
+  for d in examples/*/ projects/*/; do
+    [[ -d "$d" ]] || continue
+    lesson=$(basename "$d"); where=${d%/}
     parts=(); names=()
     for id in "${IDS[@]}"; do
       key="$lesson|$id"; p=${LP[$key]:-0}; fl=${LF[$key]:-0}; s=${LS[$key]:-0}
       full=$(awk -F'\t' -v i="$id" '$1==i{print $2}' "$VERS" | awk '{print $1" "$2}')
       if [[ $fl -eq 0 && $p -gt 0 ]]; then
         names+=("$full")
-        if [[ $s -gt 0 ]]; then parts+=("$full: $p examples passed ($s written for other versions only)")
-        else parts+=("$full: $p examples passed"); fi
+        noun=examples; [[ $where == projects/* ]] && noun=tests
+        if [[ $s -gt 0 ]]; then parts+=("$full: $p $noun passed ($s written for other versions only)")
+        else parts+=("$full: $p $noun passed"); fi
       fi
     done
     hparts=(); hnames=(); hmissing=()
@@ -357,19 +394,24 @@ if [[ -z "$FILTER" ]]; then
         printf '??? success "Tested with %s"\n' "$title"
         for p in "${parts[@]}" "${hparts[@]}" "${hmissing[@]}"; do printf '    - %s\n' "$p"; done
       fi
-      if [[ ${#names[@]} -eq 0 && -n "${LHOSTS[$lesson]:-}" ]]; then
-        printf '\n    Every code block on this page is a real file under `examples/%s/`, run inside\n' "$lesson"
+      if [[ $where == projects/* ]]; then
+        printf '\n    Every code block on this page is a real file under `%s/`. `tests/run_all.sh`\n' "$where"
+        printf '    runs its steps and exercises on each interpreter, and its `*.test.sh` drivers\n'
+        printf '    (builds, command-line runs, real host runs) once per interpreter or inside the\n'
+        printf '    host, locally and in CI, comparing every output with its `.expected` file.\n'
+      elif [[ ${#names[@]} -eq 0 && -n "${LHOSTS[$lesson]:-}" ]]; then
+        printf '\n    Every code block on this page is a real file under `%s/`, run inside\n' "$where"
         printf '    the real host by `tests/run_all.sh` (locally and in CI) and compared with its\n'
         printf '    `.expected` output.\n'
       else
-        printf '\n    Every code block on this page is a real file under `examples/%s/`, run on each\n' "$lesson"
+        printf '\n    Every code block on this page is a real file under `%s/`, run on each\n' "$where"
         printf '    interpreter by `tests/run_all.sh` and compared with its `.expected` output.\n'
       fi
-      if [[ ${#names[@]} -gt 0 && -n "${LHOSTS[$lesson]:-}" ]]; then
+      if [[ $where != projects/* && ${#names[@]} -gt 0 && -n "${LHOSTS[$lesson]:-}" ]]; then
         printf '    Host examples run inside the real program (driven by the `*.test.sh` scripts\n'
         printf '    next to them, or `nvim --headless -l`), and their output is compared the same way.\n'
       fi
-      if [[ -n "${NATIVE[$lesson]:-}" ]]; then
+      if [[ $where != projects/* && -n "${NATIVE[$lesson]:-}" ]]; then
         printf '    C, C++ and Rust examples are compiled against each interpreter'"'"'s own headers\n'
         printf '    and static library, then run the same way.\n'
       fi

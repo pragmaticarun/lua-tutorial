@@ -1,0 +1,6 @@
+level 1: ok, 26 bricks
+level 2: ok, 30 bricks
+level 3: ok, 36 bricks
+broken level ok?	false
+  row 2 has 5 columns, expected 4
+  row 2: unknown brick 'x'

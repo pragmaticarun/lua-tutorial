@@ -67,12 +67,14 @@ jobs:
             ~/.cargo/registry/cache
             ~/.cargo/git/db
             examples/22-mlua/target
-          key: cargo-${{ runner.os }}-${{ hashFiles('examples/22-mlua/Cargo.lock', 'scripts/install-interpreters.sh') }}
+            projects/p6-rust-pipeline/target
+          key: cargo-${{ runner.os }}-${{ hashFiles('examples/22-mlua/Cargo.lock', 'projects/p6-rust-pipeline/Cargo.lock', 'scripts/install-interpreters.sh') }}
 
       - name: Toolchain versions
         run: |
           gcc --version | head -1
           g++ --version | head -1
+          cmake --version | head -1
           rustc --version
           cargo --version
           nvim --version | head -1
@@ -85,7 +87,7 @@ jobs:
           luacheck --version | head -1
           stylua --version
 
-      - name: Build and run every example (Lua, C, C++, Rust) and every host test
+      - name: Build and run every example (Lua, C, C++, Rust), every project and every host test
         run: tests/run_all.sh
 
       - name: Check committed test badges are up to date

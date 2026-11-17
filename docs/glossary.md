@@ -30,11 +30,20 @@
 **Cosocket (OpenResty)**
 :   A non-blocking socket (`ngx.socket.tcp`) whose blocking-looking calls yield the request's coroutine to nginx's event loop. See [Lesson 26](part4/26-openresty.md).
 
+**Count hook**
+:   A debug hook (`lua_sethook` with `LUA_MASKCOUNT`, or mlua's `every_nth_instruction`) called every N VM instructions; raising an error from it stops runaway scripts. It never runs inside one long C function, and LuaJIT runs it only with the JIT off. See [Project 5](projects/p5-cpp-pipeline.md).
+
+**Deterministic replay**
+:   Running a game again from the same seed and the same per-frame input and getting the same result; needs a fixed time step and an RNG you control. See [Project 4](projects/p4-love-arcade.md).
+
 **Environment (`_ENV`)**
 :   The table in which free names (globals) are looked up. `_G` is the default global table. Since Lua 5.2 every chunk has an `_ENV` upvalue; Lua 5.1 and LuaJIT use `setfenv` instead.
 
 **Ephemeron table**
 :   A table with weak keys and strong values in which a value keeps its key alive only if the key is reachable from elsewhere (Lua 5.2+; not LuaJIT). See [Lesson 16](part2/16-gc.md).
+
+**Event log**
+:   A list of "what happened" records (`brick`, `level`, `highscore`, ...) emitted through one callback; drives sounds and lets tests compare runs line by line. See [Project 4](projects/p4-love-arcade.md).
 
 **Extmark (Neovim)**
 :   A position in a buffer that moves with edits, optionally carrying highlights or virtual text, grouped by namespace. See [Lesson 23](part4/23-neovim.md).
@@ -63,6 +72,9 @@
 **Guard**
 :   A check in a compiled LuaJIT trace (marked `>` in `-jdump` IR) that leaves the trace when an assumption made during recording no longer holds. See [Lesson 18](part3/18-luajit.md).
 
+**Health check (Neovim)**
+:   A `lua/<plugin>/health.lua` module whose `check()` reports with `vim.health.ok/warn/error`; run by `:checkhealth <plugin>`. See [Project 3](projects/p3-notes-nvim.md).
+
 **Hook (mpv)**
 :   A callback (`mp.add_hook`, e.g. `on_load`, `on_unload`) that pauses the player until it returns, so a script can change a file's options before it opens. See [Lesson 27](part4/27-mpv.md).
 
@@ -86,6 +98,9 @@
 
 **Multiple results**
 :   A function can return several values. Only the last expression in a list expands to all of them; others are truncated to one. See [Lesson 8](part1/08-functions.md).
+
+**Panic (C API)**
+:   What Lua does when an error happens outside any protected call: it calls the panic function and then aborts the process. Host code that may allocate under a memory limit must run inside `lua_pcall`/`lua_cpcall`. See [Project 5](projects/p5-cpp-pipeline.md).
 
 **Pattern**
 :   Lua's lightweight alternative to regular expressions, used by `find`, `match`, `gmatch` and `gsub`. See [Lesson 7](part1/07-patterns.md).
@@ -120,8 +135,17 @@
 **Runtimepath (Neovim)**
 :   The list of directories Neovim searches for `plugin/`, `lua/`, `ftplugin/`, ...; installing a plugin means adding its directory here. See [Lesson 23](part4/23-neovim.md).
 
+**Sandbox**
+:   Running untrusted Lua with a restricted environment (a whitelist of globals), text-only loading, and resource limits (memory, instructions, time). See [Project 5](projects/p5-cpp-pipeline.md).
+
+**Scope (mlua)**
+:   `Lua::scope` lets Lua borrow non-`'static` Rust values; userdata created in it are destructed when the scope ends, so a later use raises "userdata has been destructed". See [Project 6](projects/p6-rust-pipeline.md).
+
 **Script cache (Redis)**
 :   Server-side cache of `EVAL` scripts keyed by the SHA1 of their text, called with `EVALSHA`; emptied by restart or `SCRIPT FLUSH`. See [Lesson 25](part4/25-redis.md).
+
+**Script directory (mpv)**
+:   An mpv script packaged as a directory with a `main.lua`; mpv adds the directory to `package.path`, so helper modules can be `require`d. See [Project 2](projects/p2-mpv-bookmarks.md).
 
 **Searcher**
 :   A function in `package.searchers` (`package.loaders` in LuaJIT) that `require` asks to find a module. See [Lesson 12](part2/12-modules.md).
@@ -137,6 +161,9 @@
 
 **Spy / stub (busted)**
 :   A spy wraps a function and records calls; a stub replaces it for one test and can return canned values. See [Lesson 28](part4/28-tooling.md).
+
+**State machine (stack)**
+:   Game screens as states on a stack: `switch` replaces the top, `push` suspends it under a new state (a pause menu), `pop` resumes it. See [Project 4](projects/p4-love-arcade.md).
 
 **Table**
 :   Lua's only data structure: an associative array with an array part and a hash part. See [Lessons 4](part1/04-tables-1.md) and [5](part1/05-tables-2.md).

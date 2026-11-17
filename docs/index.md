@@ -60,8 +60,8 @@ The teaching style is "intuition first":
 
     ---
 
-    A log analyzer CLI, an mpv bookmark plugin, a Neovim plugin, a LÖVE game, and a
-    C++ media pipeline scripted in Lua.
+    Six tested guided builds: a log analyzer rock, an mpv bookmark plugin, a Neovim
+    plugin, a LÖVE game, a sandboxed C++ media pipeline scripted in Lua, and its Rust twin.
 
 -   :material-compare-horizontal: **[Version Differences](version-differences.md)**
 

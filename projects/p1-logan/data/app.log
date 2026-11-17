@@ -1,0 +1,24 @@
+2026-11-17T10:00:15Z WARN [http] client closed connection
+2026-11-17T10:00:20Z WARN [auth] bad password
+2026-11-17T10:00:27Z ERROR [db] connection refused
+2026-11-17T10:00:38Z INFO [auth] login ok
+2026-11-17T10:00:53Z WARN [db] slow query (took 410ms)
+2026-11-17T10:01:12Z INFO [auth] login ok
+2026-11-17T10:01:22Z INFO [http] GET /api/streams (took 33ms)
+2026-11-17T10:01:31Z INFO [auth] login ok
+2026-11-17T10:01:51Z INFO [transcoder] segment 1080p done (took 566ms)
+2026-11-17T10:02:00Z INFO [db] query ok (took 823ms)
+2026-11-17T10:02:08Z WARN [http] client closed connection
+2026-11-17T10:02:19Z INFO [http] GET /api/streams (took 262ms)
+2026-11-17T10:02:30Z INFO [transcoder] segment 1080p done (took 787ms)
+2026-11-17T10:02:45Z ERROR [transcoder] codec h264 not found
+2026-11-17T10:02:54Z WARN [db] slow query (took 367ms)
+2026-11-17T10:03:13Z INFO [auth] login ok
+2026-11-17T10:03:22Z ERROR [db] connection refused
+2026-11-17T10:03:32Z INFO [db] query ok (took 181ms)
+2026-11-17T10:03:41Z INFO [auth] login ok
+2026-11-17T10:03:47Z ERROR [transcoder] codec h264 not found
+2026-11-17T10:03:55Z INFO [db] query ok (took 200ms)
+2026-11-17T10:04:08Z INFO [db] query ok (took 524ms)
+2026-11-17T10:04:27Z INFO [db] query ok (took 458ms)
+2026-11-17T10:04:42Z WARN [http] client closed connection

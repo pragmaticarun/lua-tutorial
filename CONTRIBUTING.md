@@ -95,3 +95,28 @@ or_start || exit 1          # stdout is compared with name.expected
 - A missing host makes its tests **skip** (and the badge says so); never paste
   output that was not produced by the host.
 - Under `nvim -l`, `print()` goes to stderr: write test output with `io.write`.
+
+## Projects
+
+A project is a complete, self-contained directory `projects/pN-slug/`, and its
+page `docs/projects/pN-*.md` includes the real source files with snippets
+(`--8<-- "projects/p1-logan/src/logan/parse.lua"`, or a named section such as
+`"projects/p5-cpp-pipeline/src/sandbox.cpp:limits"` delimited by
+`--8<-- [start:limits]` / `--8<-- [end:limits]` comments in the source).
+
+- Lua files in a project's `steps/` and `exercises/` run on all interpreters,
+  exactly like examples (same headers, `.expected` files and overrides).
+- Files with `-- host: nvim` anywhere under `projects/` run in Neovim.
+- A `*.test.sh` driver whose header has `# interp: 5.5, 5.4, jit` runs once per
+  listed interpreter and counts as a `proj` result for it. The runner exports
+  `LUA` (the interpreter's full path), `LUA_ID`, `LUA_PREFIX`, `LUA_INC`,
+  `LUA_LIBDIR`, `LUA_LIBNAME` and `BUSTED` (the busted wrapper for that
+  interpreter). Add a `# host: luarocks` line when it also needs a host; a
+  missing host makes it skip. Per-interpreter output goes in
+  `name.<id>.expected`, as for examples.
+- Other `*.test.sh` drivers are host tests, as in Part 4.
+- Build output stays inside the project and is git-ignored (`build/`, `target/`).
+- Project pages follow the lesson layout but as a guided build: design first,
+  incremental steps with included code and output, honest version notes,
+  extension exercises with hidden solutions, a five-question quiz, and the
+  badge `--8<-- "includes/badges/pN-slug.md"`.

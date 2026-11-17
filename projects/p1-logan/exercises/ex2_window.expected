@@ -1,0 +1,4 @@
+since=nil               until=nil               parsed=40 errors=11
+since=2026-11-17 10:02  until=nil               parsed=26 errors=6
+since=nil               until=2026-11-17 10:01  parsed=14 errors=5
+since=2026-11-17 10:02  until=2026-11-17 10:02  parsed= 8 errors=4

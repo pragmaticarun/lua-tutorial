@@ -1,0 +1,2 @@
+mediapipe-rs 1.0, mlua 0.12.2, Lua 5.5
+  -> FAILED: attempt to load a binary chunk (mode is 't')

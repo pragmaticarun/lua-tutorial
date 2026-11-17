@@ -1,0 +1,13 @@
+$ mediapipe --frames 1 scripts/ex1_param.lua:gain=0.5,label=half
+load scripts/ex1_param.lua
+  [ex1_param.lua] gain	0.5	label	half	missing	7
+frame 0
+  input           min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  ex1_param.lua   min=  0 max=128 mean= 43.57 fnv=bb8b1966
+output
+$ mediapipe --frames 1 scripts/ex1_param.lua:gain=loud
+load scripts/ex1_param.lua
+  -> FAILED: param gain: 'loud' is not a number
+frame 0
+  input           min=  0 max=255 mean= 86.72 fnv=f2a0102b
+output

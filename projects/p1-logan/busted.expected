@@ -1,0 +1,18 @@
+ok 1 - logan.args fills in defaults
+ok 2 - logan.args accepts every option spelling
+ok 3 - logan.args keeps positional arguments in order, '-' included
+ok 4 - logan.args reports mistakes instead of raising
+ok 5 - logan.main prints help and exits 0
+ok 6 - logan.main exits 2 with a hint on a usage error
+ok 7 - logan.main exits 1 when a file cannot be opened, but still reports the rest
+ok 8 - logan.main filters by status class
+ok 9 - logan.main reads standard input for '-'
+ok 10 - logan.parse parses a combined access-log line
+ok 11 - logan.parse parses an application-log line, with and without a duration
+ok 12 - logan.parse auto-detects the format and explains failures
+ok 13 - logan.parse rejects an unknown month
+ok 14 - logan.report counts lines, statuses and errors
+ok 15 - logan.report sorts top lists by count, then by key
+ok 16 - logan.report encodes JSON with sorted keys and escapes
+1..16
+[exit 0]

@@ -1,0 +1,41 @@
+load hostile/escape.lua
+  [escape.lua] dangerous globals visible: none
+  [escape.lua] string.dump:	nil	through a string:	nil
+  [escape.lua] safe parts still work:	ababab	7	1+2
+load hostile/loop.lua
+load hostile/pcall_loop.lua
+load hostile/memory.lua
+load hostile/half_done.lua
+load hostile/keep_frame.lua
+load hostile/no_process.lua
+load scripts/invert.lua
+frame 0
+  input           min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  [escape.lua] got	Frame(48x24)	pixel(0,0) =	255
+  [escape.lua] out of range:	false	x 999 out of range 0..47
+  escape.lua      min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  loop.lua        FAILED: instruction limit exceeded (2000000) (unloaded)
+  pcall_loop.lua  FAILED: instruction limit exceeded (2000000) (unloaded)
+  memory.lua      FAILED: memory limit exceeded (512 KiB) (unloaded)
+  half_done.lua   FAILED: hostile/half_done.lua:7: codec exploded halfway through (unloaded)
+  keep_frame.lua  min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  no_process.lua  FAILED: script does not define process(frame) (unloaded)
+  invert.lua      min=  0 max=255 mean=168.28 fnv=18ee63f7
+frame 1
+  input           min=  0 max=255 mean= 86.33 fnv=17c78f1e
+  [escape.lua] got	Frame(48x24)	pixel(0,0) =	0
+  [escape.lua] out of range:	false	x 999 out of range 0..47
+  escape.lua      min=  0 max=255 mean= 86.33 fnv=17c78f1e
+  [keep_frame.lua] previous frame is	Frame(expired)
+  keep_frame.lua  FAILED: hostile/keep_frame.lua:7: frame used after process() returned (unloaded)
+  invert.lua      min=  0 max=255 mean=168.67 fnv=e741c082
+output
+[exit 1]
+$ mediapipe --instructions 100000000000 --seconds 0.2 hostile/loop.lua
+  loop.lua        FAILED: time limit exceeded (0.20 s) (unloaded)
+$ mediapipe --frames 1 --seconds 0.1 hostile/backtrack.lua scripts/invert.lua
+load scripts/invert.lua
+  backtrack.lua   FAILED: time limit exceeded (0.10 s), detected after the call returned (unloaded)
+  invert.lua      min=  0 max=255 mean=168.28 fnv=18ee63f7
+$ mediapipe --memory 16 scripts/invert.lua
+  -> FAILED: could not set up a Lua state within the memory limit

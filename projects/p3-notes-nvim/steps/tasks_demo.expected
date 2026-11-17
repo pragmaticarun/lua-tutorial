@@ -1,0 +1,9 @@
+4 tasks, 3 open
+line 4  indent 0  due 2026-11-10 tags ci     ! [ ] fix the build #ci @2026-11-10
+line 2  indent 0  due 2026-11-20 tags docs     [ ] write the release notes #docs @2026-11-20
+line 6  indent 0  due nil        tags docs     [ ] tidy the README #docs
+line 3  indent 2  due nil        tags docs     [x] draft #docs
+3	0
+- [x] write the release notes #docs @2026-11-20
+  - [ ] draft #docs
+- [x] keep [ ] this

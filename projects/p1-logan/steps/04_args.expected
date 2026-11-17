@@ -1,0 +1,17 @@
+access.log                         -> top=5 format=auto output=text status=nil files={access.log}
+-n3 --format=combined a.log b.log  -> top=3 format=combined output=text status=nil files={a.log,b.log}
+--top 10 -s 4xx,500 -o json -      -> top=10 format=auto output=json status=4xx,500 files={-}
+-- -odd-name.log                   -> top=5 format=auto output=text status=nil files={-odd-name.log}
+-n                                 -> error: option -n needs a value (N)
+--top=lots                         -> error: option --top expects a number, got 'lots'
+-o xml                             -> error: option --output must be one of text, json, got 'xml'
+--colour                           -> error: unknown option '--colour'
+
+usage: logan [options] FILE... ('-' reads standard input)
+
+  -f, --format FMT       log format: auto, combined, app (default: auto)
+  -n, --top N            rows in each top list (default: 5)
+  -s, --status LIST      keep only these statuses, e.g. 4xx,500
+  -o, --output KIND      report format: text, json (default: text)
+      --version          print the version
+  -h, --help             show this help

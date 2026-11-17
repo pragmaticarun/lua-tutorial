@@ -1,0 +1,10 @@
+lint: ok
+make: installed
+logan	1.0.0-1
+modules:
+  logan/args.lua
+  logan/init.lua
+  logan/parse.lua
+  logan/report.lua
+{"bytes":1561452,"classes":{"2xx":17,"3xx":4,"4xx":8,"5xx":1
+[exit 0]

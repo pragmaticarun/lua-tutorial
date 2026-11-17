@@ -1,0 +1,41 @@
+ok - commands defined at startup
+ok - lua/notes not loaded until a command runs
+ok - root found from src/main.c via .git
+ok - :NoteAdd created .notes.md
+   | ## Tasks
+   | 
+   | - [ ] write the release notes #docs @2026-11-20
+   | - [ ] fix the build #ci @2026-11-10
+   | - [ ] tidy the README #docs
+ok - :Tasks completes tags
+ok - picker is a floating window
+   title:  3 tasks, 3 open 
+   > ! [ ] fix the build #ci @2026-11-10
+   >   [ ] write the release notes #docs @2026-11-20
+   >   [ ] tidy the README #docs
+   highlights: DiagnosticError Special Special Special
+ok - picker buffer is read-only
+ok - <CR> marked it done in the picker
+   title:  3 tasks, 2 open 
+   | ## Tasks
+   | 
+   | - [ ] write the release notes #docs @2026-11-20
+   | - [x] fix the build #ci @2026-11-10
+   | - [ ] tidy the README #docs
+ok - q closed the picker
+ok - :Tasks docs shows the 2 #docs tasks
+ok - o opened the notes file in a float
+ok - cursor on that task's line (5)
+ok - buffer saved after :NoteAdd
+   | # Project notes
+   | 
+   | ## Tasks
+   | 
+   | - [ ] write the release notes #docs @2026-11-20
+   | - [x] fix the build #ci @2026-11-10
+   | - [ ] tidy the README #docs
+   | - [ ] ship it #release
+   health: - ✅ OK Neovim 0.12.6+v0.12.6
+   health: - project root: <root>
+   health: - ✅ OK notes file: <root>/.notes.md (4 tasks)
+all notes.nvim tests passed

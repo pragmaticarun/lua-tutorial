@@ -1,0 +1,12 @@
+love exit status: 0
+snapshot at frame 600: state play, 22 bricks, paddle x=11.7
+  paddle     (76,178,242)
+  brick      (242,191,63)
+  background (20,20,31)
+event log: 112 lines, identical to the plain-Lua simulation
+ 8916 148.60s title       quit       nil
+finished after 8916 frames (148.6 s of game time)
+high scores:
+3105 LUA
+1200 LOV
+300 JIT

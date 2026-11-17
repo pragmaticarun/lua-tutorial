@@ -1,0 +1,27 @@
+[package]
+name = "mediapipe-rs"
+version = "1.0.0"
+edition = "2024"
+publish = false
+description = "Project 6: the mediapipe scripting layer hosted from Rust with mlua"
+
+# Exactly one Lua version. The test runner builds three times:
+#   cargo build --release --no-default-features --features lua55   (and lua54, luajit)
+# with LUA_LIB / LUA_LIB_NAME / LUA_LINK=static pointing at the course's Lua
+# builds. "vendored" lets mlua compile its own Lua instead.
+[features]
+default = ["lua55"]
+lua55 = ["mlua/lua55"]
+lua54 = ["mlua/lua54"]
+luajit = ["mlua/luajit"]
+vendored = ["mlua/vendored"]
+
+[dependencies]
+mlua = "=0.12.2"
+
+[[bin]]
+name = "mediapipe"
+path = "src/main.rs"
+
+[profile.release]
+debug = false

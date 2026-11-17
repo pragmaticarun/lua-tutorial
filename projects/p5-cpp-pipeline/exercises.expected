@@ -1,0 +1,22 @@
+load scripts/ex2_motion.lua
+load scripts/ex1_sharpen.lua
+load scripts/ex3_mirror.lua
+frame 0
+  input           min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  [ex2_motion.lua] first frame: nothing to compare
+  ex2_motion.lua  min=  0 max=255 mean= 86.72 fnv=f2a0102b
+  ex1_sharpen.lua min=  0 max=255 mean= 82.90 fnv=19d47743
+  ex3_mirror.lua  min=  0 max=255 mean= 82.90 fnv=483ab2e3
+frame 1
+  input           min=  0 max=255 mean= 86.33 fnv=17c78f1e
+  [ex2_motion.lua] 72 pixels changed (6.2%)
+  ex2_motion.lua  min=  0 max=255 mean= 86.33 fnv=17c78f1e
+  ex1_sharpen.lua min=  0 max=255 mean= 82.34 fnv=39a09ef3
+  ex3_mirror.lua  min=  0 max=255 mean= 82.34 fnv=d1d96153
+frame 2
+  input           min=  0 max=255 mean= 85.93 fnv=cb4094d9
+  [ex2_motion.lua] 72 pixels changed (6.2%)
+  ex2_motion.lua  min=  0 max=255 mean= 85.93 fnv=cb4094d9
+  ex1_sharpen.lua min=  0 max=255 mean= 81.82 fnv=94995367
+  ex3_mirror.lua  min=  0 max=255 mean= 81.82 fnv=51171c7b
+output
