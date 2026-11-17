@@ -1,0 +1,11 @@
+pushed 4 values            [42, 2.5, 'frame', true]  top=4
+index -1 is a boolean, index 1 is a number
+pushvalue(1)               [42, 2.5, 'frame', true, 42]  top=5
+insert(2)                  [42, 42, 2.5, 'frame', true]  top=5
+remove(1)                  [42, 2.5, 'frame', true]  top=4
+pushnil + replace(1)       [nil, 2.5, 'frame', true]  top=4
+settop(2)                  [nil, 2.5]  top=2
+newtable                   [nil, 2.5, table]  top=3
+settop(0)                  []  top=0
+'0x10' as number: 16
+7 as string: 7, and now it is a string

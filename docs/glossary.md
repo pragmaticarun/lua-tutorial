@@ -1,7 +1,13 @@
 # Glossary
 
+**Blacklisting (LuaJIT)**
+:   After repeated trace aborts at the same place, LuaJIT stops trying to compile it, so that code always runs in the interpreter. See [Lesson 18](part3/18-luajit.md).
+
 **Border**
 :   An index `n` of a table where `t[n] ~= nil` and `t[n+1] == nil` (or `0` when `t[1]` is `nil`). `#t` returns some border. See [Lesson 4](part1/04-tables-1.md).
+
+**cdata**
+:   A C value (number, struct, array, pointer) living in LuaJIT's heap, created by the FFI. See [Lesson 19](part3/19-ffi.md).
 
 **Chunk**
 :   A unit of compilation: a file, a string passed to `load`, or a line typed in the REPL. A chunk is compiled into an anonymous variadic function.
@@ -19,7 +25,7 @@
 :   A table with weak keys and strong values in which a value keeps its key alive only if the key is reachable from elsewhere (Lua 5.2+; not LuaJIT). See [Lesson 16](part2/16-gc.md).
 
 **FFI**
-:   LuaJIT's Foreign Function Interface: declare C types and functions in Lua and call them directly, without writing C bindings. Planned for Lesson 19.
+:   LuaJIT's Foreign Function Interface: declare C types and functions in Lua and call them directly, without writing C bindings. See [Lesson 19](part3/19-ffi.md).
 
 **Finalizer**
 :   A `__gc` metamethod, called after the collector finds the object unreachable. Works on tables in Lua 5.2+, only on userdata/cdata in LuaJIT. See [Lesson 16](part2/16-gc.md).
@@ -36,14 +42,23 @@
 **Global declaration**
 :   Lua 5.5's `global name`, `global<const> *` or `global function f`. Once a scope declares any global, undeclared free names become compile errors. See [Lesson 2](part1/02-syntax-types.md).
 
+**Guard**
+:   A check in a compiled LuaJIT trace (marked `>` in `-jdump` IR) that leaves the trace when an assumption made during recording no longer holds. See [Lesson 18](part3/18-luajit.md).
+
 **Integer subtype**
 :   Since Lua 5.3, numbers are either 64-bit integers or double floats. `math.type` tells them apart. LuaJIT has only doubles.
 
 **Interning**
 :   Keeping a single copy of each short string, so string equality is a pointer comparison.
 
+**Light userdata**
+:   A bare C pointer stored as a Lua value: no metatable of its own, no memory management, compared by address. See [Lesson 21](part3/21-capi-modules.md).
+
 **Metatable / metamethod**
 :   A table attached to a value that customises its behaviour (`__index`, `__add`, `__call`, …). See [Lesson 10](part2/10-metatables.md).
+
+**mlua**
+:   A Rust crate for embedding Lua 5.1–5.5, LuaJIT or Luau and for writing Lua modules in Rust. See [Lesson 22](part3/22-mlua.md).
 
 **Multiple results**
 :   A function can return several values. Only the last expression in a list expands to all of them; others are truncated to one. See [Lesson 8](part1/08-functions.md).
@@ -60,6 +75,9 @@
 **PUC-Rio Lua**
 :   The reference implementation from the Pontifical Catholic University of Rio de Janeiro, where Lua was created. Lua 5.4 and 5.5 in this course.
 
+**Registry**
+:   A table only C code can reach (`LUA_REGISTRYINDEX`), used for metatables, references (`luaL_ref`) and module-private data. See [Lesson 21](part3/21-capi-modules.md).
+
 **REPL**
 :   Read-eval-print loop: running `lua` without a script. Lua 5.3+ prints expression values; LuaJIT needs `=expr`.
 
@@ -69,6 +87,9 @@
 **Sequence**
 :   A table whose positive integer keys are exactly `1..n` for some `n`. `#`, `ipairs` and the `table` library are defined for sequences.
 
+**Side trace**
+:   A LuaJIT trace compiled for a frequently taken exit of another trace, for example the other branch of an `if`. See [Lesson 18](part3/18-luajit.md).
+
 **Table**
 :   Lua's only data structure: an associative array with an array part and a hash part. See [Lessons 4](part1/04-tables-1.md) and [5](part1/05-tables-2.md).
 
@@ -76,16 +97,19 @@
 :   A `local x <close>` (Lua 5.4+) whose `__close` metamethod runs when it goes out of scope, like RAII or Rust's `Drop`. See [Lessons 10](part2/10-metatables.md) and [13](part2/13-errors.md).
 
 **Trace (LuaJIT)**
-:   A linear sequence of operations recorded from a hot loop or function and compiled to machine code. Some operations (for example closure creation, bytecode `FNEW`) are "NYI" and abort trace recording. See [Lesson 17](part2/17-performance.md).
+:   A linear sequence of operations recorded from a hot loop or function and compiled to machine code. Some operations (for example closure creation, bytecode `FNEW`) are "NYI" and abort trace recording. See [Lessons 17](part2/17-performance.md) and [18](part3/18-luajit.md).
 
 **Upvalue**
 :   A local variable of an enclosing function captured by a closure, shared by reference. See [Lesson 9](part1/09-closures.md).
 
 **Userdata**
-:   A block of memory owned by C code and exposed to Lua, with an optional metatable. `io.stdout` is one. Planned for Lessons 20–21.
+:   C data as a Lua value. A full userdata is a block of memory allocated and collected by Lua, with an optional metatable (`io.stdout` is one); a light userdata is a bare pointer. See [Lesson 21](part3/21-capi-modules.md).
 
 **Vararg (`...`)**
 :   The extra arguments of a variadic function. Lua 5.5 can name them as a table: `function f(...args)`. See [Lesson 8](part1/08-functions.md).
+
+**Virtual stack**
+:   The array of Lua values through which C code and a `lua_State` exchange arguments and results, addressed by positive or negative indices. See [Lesson 20](part3/20-capi-embed.md).
 
 **Weak table**
 :   A table whose `__mode` makes its keys (`"k"`), values (`"v"`) or both weak references that do not keep objects alive. See [Lesson 16](part2/16-gc.md).

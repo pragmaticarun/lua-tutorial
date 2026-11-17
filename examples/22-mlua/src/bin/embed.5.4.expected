@@ -1,0 +1,6 @@
+hello from Lua 5.4
+eval: 42 two true
+label from Lua: AV1@1920
+area: 921600
+1.0	-1.0
+fast|medium|slow fps=30 hdr=false

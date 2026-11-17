@@ -1,0 +1,5 @@
+Config { width: 1280, height: 720, codec: "h264", presets: ["fast", "slow"] }
+error: runtime error: 1279x720: dimensions must be even
+error: error converting Lua string to u32 (expected number or string coercible to number)
+error: error converting Lua table to String (expected string or number)
+global 'output' after loading: None

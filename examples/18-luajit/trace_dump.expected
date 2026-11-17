@@ -1,0 +1,23 @@
+---- TRACE 1 start trace_dump.lua:7
+0016  MULVN    6   5   0  ; 2
+0017  ADDVV    1   1   6
+0018  FORL     2 => 0016
+---- TRACE 1 IR
+0001    int SLOAD  #4    CI
+0002    num CONV   0001  num.int
+0003    num ADD    0002  0002
+0004 >  num SLOAD  #3    T
+0005  + num ADD    0004  0003
+0006  + int ADD    0001  +1
+0007 >  int LE     0006  +1000
+0008 ------ LOOP ------------
+0009    num CONV   0006  num.int
+0010    num ADD    0009  0009
+0011  + num ADD    0010  0005
+0012  + int ADD    0006  +1
+0013 >  int LE     0012  +1000
+0014    int PHI    0006  0012
+0015    num PHI    0005  0011
+---- TRACE 1 stop -> loop
+
+1001000

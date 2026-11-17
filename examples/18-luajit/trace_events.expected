@@ -1,0 +1,2 @@
+closure per iteration  start=5 stop=0 abort=5  (NYI: bytecode FNEW)
+hoisted function       start=1 stop=1 abort=0

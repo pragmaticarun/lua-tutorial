@@ -1,0 +1,8 @@
+SyntaxError            syntax error: script:1: unexpected symbol near <eof>
+RuntimeError           runtime error: script:1: boom
+RuntimeError           runtime error: script:1: attempt to index a nil value (local 't')
+FromLuaConversionError error converting Lua string to i32 (expected number or string coercible to number)
+frame 1 ok
+false	corrupt frame 13
+CallbackError          corrupt frame 13
+downcast: DecodeError { frame: 13 }

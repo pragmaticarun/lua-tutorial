@@ -1,0 +1,4 @@
+sum 1M doubles: all variants agree (checksum 250000250000)
+RGB to grey, 640x480: all variants agree (checksum 38918400)
+array of 200k points: all variants agree (checksum 40000200000)
+1M square roots: all variants agree (checksum 666667166)

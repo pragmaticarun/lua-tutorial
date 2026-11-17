@@ -1,0 +1,7 @@
+area: 2073600
+hello, C++
+42	MIXED CASE
+false	number expected
+scale was called 1 times
+stack top: 0
+LuaError: cpp:1: '=' expected near 'is'

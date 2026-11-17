@@ -1,0 +1,8 @@
+output: 1280x720 @ 30 fps, codec av1
+preset 1: fast
+preset 2: medium
+preset 3: slow
+on_frame(-1) failed: config.lua:7: negative frame number -1
+on_frame(0) -> keyframe, 40 ms
+on_frame(1) -> delta, 80 ms
+stack top at exit: 0

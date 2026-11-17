@@ -1,0 +1,11 @@
+Lua 5.5	no jit module
+integers (math.type):	true
+// operator:	true
+bit ops & | ~:	true	bit library:	false
+goto:	true
+\u{...} escapes:	true
+table.unpack:	true	global unpack:	false
+_ENV:	true	setfenv:	false
+<close>:	true
+utf8 library:	true
+2^53 + 1 exact:	true

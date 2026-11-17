@@ -105,7 +105,13 @@ nav:
       - "15. Standard Library Tour": part2/15-stdlib.md
       - "16. Garbage Collection": part2/16-gc.md
       - "17. Performance": part2/17-performance.md
-  - "Part 3: Systems Lua": part3/index.md
+  - "Part 3: Systems Lua":
+      - part3/index.md
+      - "18. LuaJIT: The Trace Compiler": part3/18-luajit.md
+      - "19. The LuaJIT FFI": part3/19-ffi.md
+      - "20. C API I: Embedding": part3/20-capi-embed.md
+      - "21. C API II: C Modules": part3/21-capi-modules.md
+      - "22. Rust with mlua": part3/22-mlua.md
   - "Part 4: Real World": part4/index.md
   - Projects: projects/index.md
   - Version Differences: version-differences.md

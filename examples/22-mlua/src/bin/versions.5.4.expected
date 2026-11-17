@@ -1,0 +1,4 @@
+feature build: lua54
+_VERSION = Lua 5.4, jit = none
+2^53 + 1 -> Number(9007199254740992); literal 9007199254740993 -> Integer(9007199254740993)
+memory limit: supported, big table -> MemoryError

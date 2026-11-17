@@ -1,0 +1,2 @@
+bin 0:	201	bin 255:	200	bin 299 mod 256:	244
+C and Lua agree:	true

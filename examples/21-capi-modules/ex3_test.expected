@@ -1,0 +1,4 @@
+10 40 90
+false	ex3_test.lua:4: attempt to add a 'string' with a 'number'
+true	-1	-2
+false	table	7

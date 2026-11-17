@@ -1,0 +1,2 @@
+slow: result=4002000 traces=1 aborts=6
+fast: result=4002000 traces=1 aborts=0

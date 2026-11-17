@@ -1,0 +1,5 @@
+userdata	5.0	3.0	4.0
+Vec2(4.0, 5.0)	true
+false	bad argument #1 to '?' (tutorial.Vec2 expected, got number)
+false	use_vec.lua:7: bad argument #2 to 'add' (tutorial.Vec2 expected, got number)
+true

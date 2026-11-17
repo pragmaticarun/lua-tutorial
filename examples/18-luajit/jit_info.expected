@@ -1,0 +1,6 @@
+LuaJIT 2.1.1794386141
+Linux	x64
+JIT enabled:	true
+fold+ cse+ dce+ fwd+ dse+ narrow+ loop+ abc+ sink+ fuse+
+after jit.off():	false
+after jit.on():	true

@@ -1,0 +1,7 @@
+calls:	2
+removed:	true	false
+calls:	1
+A:fps=30 B:fps=30 B:fps=60
+false	use_events.lua:11: bad value
+1	2	3	101	4
+userdata	true

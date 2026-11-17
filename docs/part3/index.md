@@ -1,13 +1,21 @@
 # Part 3: Systems Lua
 
-!!! info "Coming soon"
-    These lessons are planned. C and Rust examples will be compiled and run in CI
-    against the same interpreters as the Lua examples.
+Lua as a component of native software: how LuaJIT makes Lua fast, how its FFI
+calls C directly, and how C, C++ and Rust programs embed Lua and extend it.
+Every C and C++ example is compiled against **each** interpreter's own headers
+and static library (Lua 5.5.1, Lua 5.4.9, LuaJIT 2.1) and run by the test suite;
+the Rust examples are built three times with `mlua`, once per Lua version.
 
-| # | Lesson | Planned content | Status |
-|---|---|---|---|
-| 18 | LuaJIT | The trace compiler, what breaks traces (`-jv`), 5.1 vs 5.4/5.5 differences | Coming soon |
-| 19 | LuaJIT FFI | Calling C libraries directly, C structs and arrays, performance comparison | Coming soon |
-| 20 | The C API I: embedding | Embedding Lua in C/C++, the virtual stack, calling Lua from C and back | Coming soon |
-| 21 | The C API II: C modules | Writing C modules, userdata with metatables, light userdata, the registry | Coming soon |
-| 22 | Lua from Rust with `mlua` | Embedding, exposing Rust types, async notes | Coming soon |
+| # | Lesson | You will learn |
+|---|---|---|
+| 18 | [LuaJIT: The Trace Compiler](18-luajit.md) | Traces, `-jv` and `-jdump`, what aborts traces, the 5.1 dialect, the new 2.1-branch syntax caveat |
+| 19 | [The LuaJIT FFI](19-ffi.md) | `ffi.cdef`, libc and your own `.so`, structs and arrays, `ffi.gc`, callbacks, measured performance |
+| 20 | [The C API I: Embedding](20-capi-embed.md) | `lua_State`, the virtual stack, calling in both directions, `lua_pcall` errors, a C++ RAII wrapper |
+| 21 | [The C API II: C Modules](21-capi-modules.md) | Modules for `require`, userdata with `__gc`/`__close`, light userdata, registry references, upvalues |
+| 22 | [Lua from Rust with `mlua`](22-mlua.md) | Embedding, `UserData`, error conversion, feature flags for Lua 5.5, 5.4 and LuaJIT |
+
+!!! tip "Toolchain"
+    You need `gcc`/`g++` (C11 and C++17) for Lessons 20–21 and the custom library in
+    Lesson 19, and a Rust toolchain (`rustup`, Rust 1.88 or newer) for Lesson 22.
+    The interpreters built by `scripts/install-interpreters.sh` already include the
+    headers and static libraries.

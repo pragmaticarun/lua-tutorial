@@ -57,6 +57,18 @@ pinned LuaJIT 2.1.1794386141 build from [Setup](setup.md).
 | `setpause` / `setstepmul` | removed | yes (deprecated) | yes | [L16](part2/16-gc.md) |
 | Ephemeron tables | yes | yes | **no** (weak-key value keeps key alive) | [L16](part2/16-gc.md) |
 | `__gc` on tables | yes | yes | **no** (userdata, `newproxy`, `ffi.gc`) | [L16](part2/16-gc.md) |
+| JIT compiler, `jit.*`, `-jv`/`-jdump` | no | no | yes | [L18](part3/18-luajit.md) |
+| `jit.attach` handlers per event | n/a | n/a | one (attaching replaces) | [L18](part3/18-luajit.md) |
+| FFI (`require "ffi"`), `1LL` literals | no | no | yes | [L19](part3/19-ffi.md) |
+| `lua_newstate` | `(alloc, ud, seed)` | `(alloc, ud)` | `(alloc, ud)` | [L20](part3/20-capi-embed.md) |
+| Emergency GC on allocation failure | yes | yes | **no** (error at once) | [L20](part3/20-capi-embed.md) |
+| Count/line hooks in hot loops | always called | always called | not from JIT-compiled code | [L20](part3/20-capi-embed.md) |
+| C function name in `bad argument` errors | found via `package.loaded` | same | often `'?'` | [L20](part3/20-capi-embed.md) |
+| `lua_getfield` / `lua_getglobal` return type | yes | yes | no (`void`) | [L21](part3/21-capi-modules.md) |
+| `lua_rawlen`, `lua_absindex`, `lua_rawgetp` | yes | yes | no (`lua_objlen`) | [L21](part3/21-capi-modules.md) |
+| Userdata user values | `lua_setiuservalue` (n values) | same | one env table (`lua_setfenv`) | [L21](part3/21-capi-modules.md) |
+| `lua_pushfstring("%f", 4.0)` | `4.0` | `4.0` | `4` | [L21](part3/21-capi-modules.md) |
+| mlua 0.12 feature flag | `lua55` | `lua54` | `luajit` / `luajit52` | [L22](part3/22-mlua.md) |
 
 ## Feature detection
 
@@ -178,6 +190,6 @@ short function expressions `|a, b| -> a + b`, and underscores in numbers.
 
 From the Lua 5.5 readme and manual §8, still to be demonstrated in later parts:
 incremental major collections, more compact arrays (about 60% less memory for
-large arrays), external strings, `luaL_openselectedlibs` / `luaL_makeseed`,
-`lua_newstate` taking a seed argument. (The 15-object limit on `__call` chains, the
+large arrays), external strings and `luaL_openselectedlibs` (what `luaL_openlibs`
+now expands to). `lua_newstate` with a seed and `luaL_makeseed` are in Lesson 20. (The 15-object limit on `__call` chains, the
 `"param"` GC option and `table.create` are covered in Lessons 10, 16 and 17.)

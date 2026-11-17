@@ -1,0 +1,12 @@
+-- ok: LUA_OK
+-- syntax: LUA_ERRSYNTAX
+script:1: unexpected symbol near '='
+-- runtime: LUA_ERRRUN
+script:1: attempt to index a nil value (local 't')
+stack traceback:
+-- error object: LUA_ERRRUN
+error object: code=404 msg=no such stream
+-- memory: LUA_ERRMEM
+not enough memory
+usable right away: yes
+after a full GC: yes

@@ -1,0 +1,4 @@
+Frame(4x3)	4	3	12	84	7
+false	runtime error: pixel (4, 0) out of range
+false	demo:7: attempt to index a Frame value (upvalue 'f')
+after Rust edit: 332

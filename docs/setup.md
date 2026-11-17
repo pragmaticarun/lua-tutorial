@@ -57,7 +57,7 @@ Repeat with `5.4.9` (SHA-256 `2335b6c582a52654f94612bf10d2f4672805d05329aa6568b1
 and the `lua5.4` / `luac5.4` names.
 
 `make install` also installs the headers (`include/`) and the static library
-`liblua.a` under the `INSTALL_TOP`, which Part 3 uses to embed Lua in C++.
+`liblua.a` under the `INSTALL_TOP`, which Part 3 uses to embed Lua in C, C++ and Rust.
 
 !!! tip "REPL line editing"
     Lua 5.5's `lua` loads `libreadline.so` dynamically if it can find it
@@ -134,3 +134,16 @@ Any editor works. For completion and diagnostics install
 sumneko, or via Mason in Neovim) and tell it which runtime you target
 (`"runtime.version": "Lua 5.4"` or `"LuaJIT"`). Formatting with StyLua and
 linting with luacheck are covered in Lesson 28.
+
+## Part 3 toolchain
+
+Lessons 19–21 compile C and C++ (`sudo apt install build-essential` provides
+`gcc` and `g++`). Lesson 22 needs Rust 1.88 or newer:
+
+```bash
+curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal
+```
+
+`tests/run_all.sh` uses `CC`, `CXX` and `CARGO` from the environment (default
+`gcc`, `g++`, `cargo`) and finds each interpreter's headers and static library next
+to its binary (`/opt/lua-5.5.1/include`, `/opt/luajit-2.1/include/luajit-2.1`, ...).

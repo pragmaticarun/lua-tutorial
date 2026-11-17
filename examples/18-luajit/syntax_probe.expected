@@ -1,0 +1,10 @@
+compound assignment  no
+continue             no
+nil-coalescing ??    no
+safe navigation ?.   no
+ternary ?:           no
+const x = ...        no
+short lambda         no
+1_000_000            no
+!= operator          no
+// floor division    yes

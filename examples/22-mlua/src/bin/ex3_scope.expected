@@ -1,0 +1,2 @@
+collected in Rust: ["event 1", "event 2", "event 3"]
+calling after scope: a destructed callback or destructed userdata method was called

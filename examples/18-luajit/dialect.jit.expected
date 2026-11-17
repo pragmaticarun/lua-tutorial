@@ -1,0 +1,11 @@
+Lua 5.1	LuaJIT 2.1.1794386141
+integers (math.type):	false
+// operator:	false
+bit ops & | ~:	true	bit library:	true
+goto:	true
+\u{...} escapes:	true
+table.unpack:	false	global unpack:	true
+_ENV:	false	setfenv:	true
+<close>:	false
+utf8 library:	false
+2^53 + 1 exact:	false
