@@ -1,0 +1,7 @@
+log: save!
+after <leader>u: one,TWO,three
+after <leader>d: one,three
+cursor after <leader>j: 1
+maparg desc: Pretend to save lua callback: function
+buffer map: <Space>u Uppercase line
+deleted: true

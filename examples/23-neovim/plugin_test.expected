@@ -1,0 +1,14 @@
+ok - plugin/todo.lua was sourced
+ok - :TodoQuickfix exists
+ok - lua/todo is not loaded until first use
+ok - setup() deep-merges user options over defaults
+ok - BufEnter highlighted 2 keywords in a.lua
+   first mark: row 0 col 15-19 Todo
+ok - :TodoHighlight! clears
+ok - :TodoQuickfix found 4 items
+   a.lua:1:16 [I] TODO: rename
+   a.lua:2:4 [I] NOTE: fine
+   b.lua:1:4 [E] FIXME: leaks memory
+   b.lua:2:4 [I] HACK: temporary
+ok - TextChanged re-highlighted b.lua
+ok - setup({auto=false}) removed the autocmds

@@ -1,0 +1,5 @@
+[osd] osd size with --vo=null: 0 0
+[osd] title: {\an7\pos(20,20)\fs30\b1\c&H00FFFF&}Chapter 1
+[osd] bar bounds: 19,299 - 627,331
+[osd]   {\an7\bord0\shad0\1c&H404040&}{\pos(20.000000,300.000000)}{\p4} m 0 0 l 4800 0 l 4800 160 l 0 160{\p0}
+[osd]   {\an7\bord0\shad0\1c&HFFFFFF&}{\pos(20.000000,300.000000)}{\p4} m 0 0 l 1200 0 l 1200 160 l 0 160{\p0}

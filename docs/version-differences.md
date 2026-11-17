@@ -181,10 +181,44 @@ short function expressions `|a, b| -> a + b`, and underscores in numbers.
 
 !!! danger "Do not use these in portable code"
     None of this is valid PUC-Rio Lua, and LuaJIT builds older than July 2026
-    reject it (including many distribution packages and the LuaJIT bundled with
-    Neovim and OpenResty releases). Bytecode that uses the new bit operators can
+    reject it (including many distribution packages and, as tested below, the
+    LuaJIT inside Neovim 0.12.6, LÖVE 11.5 and our mpv build; OpenResty
+    1.31.8.1's LuaJIT fork *does* accept `+=` and the bit operators). Bytecode that uses the new bit operators can
     only be loaded by LuaJIT 2.1.1784535649 or newer. The course uses this syntax
     only in examples marked `-- targets: jit`.
+
+## Lua inside the Part 4 hosts
+
+Applications embed whatever Lua they were built with, and none of the five
+embedding hosts in Part 4 runs Lua 5.4 or 5.5. The same probe runs inside each
+of them (Neovim 0.12.6, LÖVE 11.5, OpenResty 1.31.8.1, mpv 0.42.0, Redis 8.10.3):
+
+| Host | Lua inside | Integers | `//` | `&` and `+=` | `goto` | `ffi` | Lesson |
+|---|---|---|---|---|---|---|---|
+| Neovim 0.12.6 | LuaJIT 2.1.1774638290 | no | no | no | yes | yes | [L23](part4/23-neovim.md) |
+| LÖVE 11.5 | LuaJIT 2.1.1700008891 | no | no | no | yes | yes | [L24](part4/24-love.md) |
+| Redis 8.10.3 | PUC Lua 5.1 (sandboxed) | no | no | no | **no** | no | [L25](part4/25-redis.md) |
+| OpenResty 1.31.8.1 | OpenResty LuaJIT fork (2.1-20261023) | no | no | **yes** | yes | yes | [L26](part4/26-openresty.md) |
+| mpv 0.42.0 (our build) | LuaJIT 2.1.1744318430 | no | no | no | yes | yes | [L27](part4/27-mpv.md) |
+
+```lua title="examples/99-version-diffs/host_probe.lua"
+--8<-- "examples/99-version-diffs/host_probe.lua"
+```
+
+```text title="host_dialects.test.sh output"
+--8<-- "examples/99-version-diffs/host_dialects.expected"
+```
+
+Other host differences found while testing Part 4:
+
+- **Neovim:** under `nvim --headless -l`, `print()` writes to **stderr** (the message
+  area); use `io.write` for output another program reads.
+- **Redis:** Lua numbers in replies are truncated to integers, `false` becomes nil,
+  missing keys arrive as `false`, and globals cannot be created (Redis 7+).
+- **OpenResty:** `table.unpack` exists alongside `unpack` (the fork enables some
+  5.2 compatibility); module-level variables are per worker, not per request.
+- **mpv:** builds may use Lua 5.1, 5.2 or LuaJIT; conda-forge's mpv has no Lua at all.
+- **StyLua 2.6.0** (Lesson 28) cannot parse Lua 5.5 `global` declarations.
 
 ## Lua 5.5 changes not covered yet
 

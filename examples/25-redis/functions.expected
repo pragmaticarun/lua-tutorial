@@ -1,0 +1,25 @@
+--- FUNCTION LOAD reads the library from stdin with -x
+"ratelimit"
+--- loading it again needs REPLACE
+(error) ERR Library 'ratelimit' already exists
+"ratelimit"
+--- FCALL name numkeys key... arg...
+(integer) 1
+(integer) 1
+(integer) 1
+(integer) 0
+(integer) 4
+--- FCALL_RO refuses functions without the no-writes flag
+(error) ERR Can not execute a script with write flag using *_ro command.
+(integer) 1
+(integer) 0
+--- FUNCTION LIST describes what is loaded (sorted: the server's order is a hash order)
+engine LUA
+function rl_hit
+function rl_peek
+function rl_reset
+--- FUNCTION DUMP / RESTORE move libraries between servers
+OK
+(error) ERR Function not found
+OK
+(integer) 0

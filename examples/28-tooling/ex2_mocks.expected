@@ -1,0 +1,4 @@
+ok 1 - cart charges the total
+ok 2 - cart reports a declined card
+ok 3 - cart starts every test with a fresh cart
+1..3

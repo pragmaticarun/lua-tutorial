@@ -1,0 +1,19 @@
+--- call
+(error) ERR value is not an integer or out of range
+--- pcall
+"recovered: ERR value is not an integer or out of range"
+--- raise
+(error) INVENTORY_LOW only 2 left
+--- global
+(error) ERR user_script:19: Attempt to modify a readonly table
+--- lua_error
+(error) ERR user_script:22: attempt to index local 't' (a nil value)
+--- writes before an error are NOT rolled back
+(nil)
+(error) ERR value is not an integer or out of range
+"written"
+--- a long-running script blocks the server; SCRIPT KILL stops it
+(error) BUSY Redis is busy running a script. You can only call SCRIPT KILL or SHUTDOWN NOSAVE.
+OK
+(error) ERR Script killed by user with SCRIPT KILL...
+PONG

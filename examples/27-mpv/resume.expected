@@ -1,0 +1,11 @@
+--- first run: seek to 2.5 and quit
+[resume] no saved position
+[resume] playing from 0.00
+[resume] playing from 2.52
+[resume] saved 2.52
+--- second run: resumes
+[resume] resuming at 2.52
+[resume] playing from 2.52
+[resume] saved 2.52
+--- state file
+{'av://l...': 2.52}

@@ -88,7 +88,9 @@ sudo ln -sf /opt/luajit-2.1/bin/luajit /usr/local/bin/luajit
 !!! warning "Distribution and bundled LuaJIT builds are older"
     `apt install luajit` gives you a LuaJIT 2.1 snapshot that predates the July 2026
     backport of LuaJIT 3.0 syntax (bitwise operators, `continue`, `const`, …), and
-    Neovim and OpenResty ship their own LuaJIT builds, which may also predate it.
+    applications ship their own LuaJIT builds: in Part 4's tests, Neovim 0.12.6,
+    LÖVE 11.5 and mpv reject that syntax, while OpenResty 1.31.8.1's fork accepts
+    some of it (see [Version Differences](version-differences.md#lua-inside-the-part-4-hosts)).
     Examples that use that syntax are clearly marked; everything else in Part 1
     sticks to syntax that every LuaJIT 2.1 accepts.
 
@@ -147,3 +149,26 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal
 `tests/run_all.sh` uses `CC`, `CXX` and `CARGO` from the environment (default
 `gcc`, `g++`, `cargo`) and finds each interpreter's headers and static library next
 to its binary (`/opt/lua-5.5.1/include`, `/opt/luajit-2.1/include/luajit-2.1`, ...).
+
+## Part 4 hosts
+
+Part 4 tests its examples inside real applications. One script installs the
+pinned versions under `/opt/hosts` (verifying checksums) and adds wrappers to
+`/usr/local/bin`; it needs the interpreters above, because LuaRocks is built
+against them:
+
+```bash
+sudo apt install xvfb xauth libgl1 libegl1 libgl1-mesa-dri libssl-dev unzip
+scripts/install-hosts.sh                 # everything (mpv takes a few minutes)
+scripts/install-hosts.sh nvim redis      # or just some hosts
+```
+
+The test runner asks each host for its version and the Lua it embeds; this is
+the list from the last test run (host id, version, Lua):
+
+```text
+--8<-- "tests/results/hosts.txt"
+```
+
+A host that is not installed is reported as **skipped**, never faked, and the
+lesson's badge says which host tests did not run.

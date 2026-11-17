@@ -1,0 +1,20 @@
+leader: " "
+number/relativenumber: true true
+shiftwidth/expandtab: 4 true
+listchars: nbsp:␣,tab:» ,trail:·
+completeopt: menuone,noselect
+shortmess has I: true
+n <C-H>      Window h
+n <C-J>      Window j
+n <C-K>      Window k
+n <C-L>      Window l
+n <Esc>      Clear search highlight
+n <leader>tn Toggle relative numbers
+n <leader>w  Write buffer
+n <leader>y  Yank to system clipboard
+x <leader>y  Yank to system clipboard
+x J          Move selection down
+x K          Move selection up
+relativenumber after <leader>tn: false
+lua buffer shiftwidth: 2 global: 4
+user autocmds: 4

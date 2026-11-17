@@ -1,0 +1,5 @@
+frame 150 score=0 hits=0 player=(246.00,170.00)
+frame 300 score=1 hits=1 player=(0.00,50.00)
+frame 450 score=1 hits=1 player=(238.00,224.00)
+frame 600 score=1 hits=1 player=(238.00,224.00)
+frames=600 time=10.000 score=1 hits=1 over=false

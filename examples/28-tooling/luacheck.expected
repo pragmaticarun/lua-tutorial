@@ -1,0 +1,9 @@
+--- the textkit project is clean
+Total: 0 warnings / 0 errors in 4 files
+--- the messy file is not
+bad/messy.lua:3:7: (W211) unused variable 'unused'
+bad/messy.lua:5:3: (W111) setting non-standard global variable 'result'
+bad/messy.lua:6:10: (W113) accessing undefined variable 'result'
+bad/messy.lua:10:11: (W412) variable 'name' was previously defined as an argument on line 8
+bad/messy.lua:13:38: (W113) accessing undefined variable 'undefined_thing'
+exit status: 1

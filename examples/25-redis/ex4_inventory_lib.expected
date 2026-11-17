@@ -1,0 +1,7 @@
+"inventory"
+OK
+(integer) 3
+(error) OUT_OF_STOCK only 3 left
+(error) ERR qty must be a positive number
+(integer) 3
+(error) ERR Can not execute a script with write flag using *_ro command.

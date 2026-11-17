@@ -1,0 +1,9 @@
+[keybindings] bookmark at 0.000000
+[keybindings] hold: down key=h
+[keybindings] hold: up key=h
+[keybindings] q is disabled by this script
+[keybindings] speed reset
+[keybindings] greet ann x2
+[keybindings] greet bo x1
+[keybindings] removed no-quit; speed is 1
+exit code: 0

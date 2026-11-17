@@ -1,0 +1,5 @@
+cas <none> -> v1     : 1
+cas <none> -> v2     : 0
+cas v1     -> v2     : 1
+cas v1     -> v3     : 0
+final: v2

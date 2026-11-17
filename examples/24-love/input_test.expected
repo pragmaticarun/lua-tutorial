@@ -1,0 +1,8 @@
+nothing                axis= 0 jump down=false pressed=false
+d down                 axis= 1 jump down=false pressed=false
+d + left (cancel)      axis= 0 jump down=false pressed=false
+left only              axis=-1 jump down=false pressed=false
+space pressed          axis=-1 jump down=true  pressed=true
+space held             axis=-1 jump down=true  pressed=false
+a replaced left        axis=-1 jump down=true  pressed=false
+unbound key x          axis=-1 jump down=false pressed=false

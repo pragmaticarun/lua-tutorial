@@ -1,0 +1,30 @@
+--- resty.redis
+GET: hello from a cosocket
+missing key is ngx.null: true
+pipeline: 1,2,2
+reused times before keepalive: 0
+
+[200]
+GET: hello from a cosocket
+missing key is ngx.null: true
+pipeline: 3,4,4
+reused times before keepalive: 1
+
+[200]
+--- raw cosocket speaking RESP
+PING -> +PONG
+ECHO header -> $5, payload -> hello
+
+[200]
+--- two backend calls in parallel light threads
+200 slow users
+200 slow orders
+two 300 ms calls took < 550 ms: true
+
+[200]
+--- ngx.timer.at + ngx.sleep
+timer scheduled: true
+right away: nil
+after ngx.sleep(0.3): set by a timer
+
+[200]

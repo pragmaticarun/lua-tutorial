@@ -1,0 +1,42 @@
+--- authenticated request, proxied to /users/1
+{"consumer": "ann", "id": 1, "name": "Ann", "request_id": true}
+[200]
+--- headers added by the gateway
+X-Gateway: lesson26
+X-RateLimit-Remaining: 3
+--- no key / wrong key / wrong method / unknown route
+{"error": "missing or unknown API key", "request_id": true}
+[401]
+{"error": "missing or unknown API key", "request_id": true}
+[401]
+{"error": "method not allowed", "request_id": true}
+[405]
+{"error": "no route", "request_id": true}
+[404]
+--- backend 404 passes through
+{"error": "no such user"}
+[404]
+--- rate limit: users route allows 5 per minute per consumer
+200 200 200 200 200 429 
+
+[200]
+(ann is limited separately)
+--- query strings are forwarded
+{"orders": [101, 102], "user": 2}
+[200]
+--- public route: no key, limit 2
+200 200 429 
+--- aggregation with light threads
+{"orders": [101, 102], "user": {"id": 2, "name": "Bo", "request_id": false}}
+[200]
+--- metrics collected in the log phase
+dashboard 200 1
+none 404 1
+orders 200 1
+public 200 2
+public 429 1
+users 200 8
+users 401 2
+users 404 1
+users 405 1
+users 429 1

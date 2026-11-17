@@ -1,0 +1,9 @@
+lines 1-4: 7 words
+lines 2-3: 4 words
+lines 4-4: 1 words
+hello, world (fargs=1)
+HELLO, BIG WORLD (fargs=2)
+complete 'Greet n': { "neovim", "nvim-team" }
+no args: false E471: Argument required: Greet
+WordCount: range=% desc=Count words
+Greet exists: false

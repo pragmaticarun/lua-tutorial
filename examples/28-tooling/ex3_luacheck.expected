@@ -1,0 +1,7 @@
+--- without the config
+legacy.lua:10:16: (W212) unused argument 'self'
+legacy.lua:13:3: (W112) mutating non-standard global variable 'APP'
+legacy.lua:13:23: (W113) accessing undefined variable 'APP'
+legacy.lua:14:10: (W113) accessing undefined variable 'vim'
+--- with ex3/.luacheckrc
+Total: 0 warnings / 0 errors in 1 file

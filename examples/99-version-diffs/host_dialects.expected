@@ -1,0 +1,60 @@
+Neovim:
+  _VERSION                           Lua 5.1
+  jit.version                        LuaJIT 2.1.1774638290
+  math.type (integer subtype)        false
+  // floor division compiles         false
+  & bitwise operator compiles        false
+  bit library                        true
+  goto compiles                      true
+  x += 1 (LuaJIT 2026 backport)      false
+  <const> attribute compiles         false
+  table.unpack / unpack              false / true
+  ffi available                      true
+LÖVE:
+  _VERSION                           Lua 5.1
+  jit.version                        LuaJIT 2.1.1700008891
+  math.type (integer subtype)        false
+  // floor division compiles         false
+  & bitwise operator compiles        false
+  bit library                        true
+  goto compiles                      true
+  x += 1 (LuaJIT 2026 backport)      false
+  <const> attribute compiles         false
+  table.unpack / unpack              false / true
+  ffi available                      true
+OpenResty (resty CLI):
+  _VERSION                           Lua 5.1
+  jit.version                        LuaJIT 2.1.ROLLING
+  math.type (integer subtype)        false
+  // floor division compiles         false
+  & bitwise operator compiles        true
+  bit library                        true
+  goto compiles                      true
+  x += 1 (LuaJIT 2026 backport)      true
+  <const> attribute compiles         false
+  table.unpack / unpack              true / true
+  ffi available                      true
+mpv:
+  _VERSION                           Lua 5.1
+  jit.version                        LuaJIT 2.1.1744318430
+  math.type (integer subtype)        false
+  // floor division compiles         false
+  & bitwise operator compiles        false
+  bit library                        true
+  goto compiles                      true
+  x += 1 (LuaJIT 2026 backport)      false
+  <const> attribute compiles         false
+  table.unpack / unpack              false / true
+  ffi available                      true
+Redis (EVAL):
+  _VERSION                           Lua 5.1
+  jit.version                        (no jit)
+  math.type (integer subtype)        false
+  // floor division compiles         false
+  & bitwise operator compiles        false
+  bit library                        true
+  goto compiles                      false
+  x += 1 (LuaJIT 2026 backport)      false
+  <const> attribute compiles         false
+  table.unpack / unpack              false / true
+  ffi available                      false

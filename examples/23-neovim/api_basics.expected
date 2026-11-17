@@ -1,0 +1,17 @@
+lines: 3
+line 2: -- TODO: rename x
+local count = 1 | -- TODO: rename x | return x | -- end
+line 3: return count
+filetype: lua sw: 2
+wildignore: *.o,*.so,*.a
+cursor: { 2, 6 }
+strlen: 6 toupper: ABC
+local total = 1 | -- TODO: rename x | return total | -- end
+b:reviewed = true g:my_plugin_loaded = 1
+{ "a", "b", "", "c" }
+{
+  a = {
+    x = 1,
+    y = 3
+  }
+}

@@ -1,0 +1,5 @@
+frames=600 time=10.000 score=1 hits=1 over=false
+player=(238.00,224.00) coins=5
+pixel player centre (51,204,102)
+pixel wall          (127,127,153)
+pixel background    (26,26,38)

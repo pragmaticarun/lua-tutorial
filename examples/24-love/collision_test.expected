@@ -1,0 +1,10 @@
+overlap      	true
+touching edge	false
+apart        	false
+circles      	true	false
+corner miss  	false
+edge hit     	true
+push (10,45)  -> 0, -5
+push (10,55)  -> 0, 5
+push (-8,52)  -> -2, 0
+push (10,20)  -> nil, nil

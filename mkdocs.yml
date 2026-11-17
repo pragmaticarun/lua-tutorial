@@ -112,7 +112,14 @@ nav:
       - "20. C API I: Embedding": part3/20-capi-embed.md
       - "21. C API II: C Modules": part3/21-capi-modules.md
       - "22. Rust with mlua": part3/22-mlua.md
-  - "Part 4: Real World": part4/index.md
+  - "Part 4: Real World":
+      - part4/index.md
+      - "23. Neovim": part4/23-neovim.md
+      - "24. LÖVE": part4/24-love.md
+      - "25. Redis Scripting": part4/25-redis.md
+      - "26. OpenResty": part4/26-openresty.md
+      - "27. mpv Scripting": part4/27-mpv.md
+      - "28. Tooling and CI": part4/28-tooling.md
   - Projects: projects/index.md
   - Version Differences: version-differences.md
   - Glossary: glossary.md

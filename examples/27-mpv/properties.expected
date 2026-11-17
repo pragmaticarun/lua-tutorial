@@ -1,0 +1,15 @@
+[properties] filename: lavfi:testsrc=duration=3:size=320x240:rate=25
+[properties] width x height: 320 240
+[properties] container-fps: 25
+[properties] paused: true
+[properties] track 1: type=video codec=wrapped_avframe 320x240
+[properties] track-list/count: 1
+[properties] missing: nil property not found
+[properties] speed (osd form): 1
+[properties] expand-text: 320x240 @ 1x
+[properties] observed speed = 1
+[properties] observed volume = 100
+[properties] observed speed = 3
+[properties] observed volume = 90
+[properties] final speed: 3 volume: 90
+[properties] set_property('speed', 'fast'): nil unsupported format for accessing property

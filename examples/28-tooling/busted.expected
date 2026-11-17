@@ -1,0 +1,22 @@
+--- busted (Lua 5.4)
+ok 1 - textkit trim removes surrounding whitespace
+ok 2 - textkit trim leaves inner whitespace alone
+ok 3 - textkit slugify lower-cases and joins words with dashes
+ok 4 - textkit slugify returns an empty string for punctuation only
+ok 5 - textkit split keeps empty fields
+ok 6 - textkit split treats the separator as plain text
+ok 7 - textkit split rejects an empty separator
+ok 8 - wrap wraps greedily at the width
+ok 9 - wrap keeps long words whole
+ok 10 - wrap validates the width
+ok 11 - wrap can be observed with a spy
+1..11
+--- busted5.5: 11 ok, 0 not ok
+--- busted-jit: 11 ok, 0 not ok
+--- a failing spec: non-zero exit, and TAP says which assertion failed
+exit status: 1
+ok 1 - a failing suite passes
+not ok 2 - a failing suite fails
+# ../failing_spec.lua @ 10
+# Failure message: ../failing_spec.lua:11: Expected objects to be the same.
+# Passed in:

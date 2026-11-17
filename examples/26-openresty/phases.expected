@@ -1,0 +1,16 @@
+--- one request through every phase
+HTTP/1.1 200 OK
+X-Trail: rewrite,access,content,header_filter
+hello lua
+phases so far: rewrite > access > content > header_filter
+body_filter saw eof
+--- the log phase ran after the response was sent
+last request: rewrite > access > content > header_filter > body_filter > log
+workers started: 1
+
+[200]
+--- access phase can end the request early
+
+[403]
+--- rewrite phase can redirect
+302 http://127.0.0.1:8089/phases?name=redirected

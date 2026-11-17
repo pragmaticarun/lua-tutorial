@@ -71,3 +71,27 @@ lua55|lua54|luajit`, linked statically against the same interpreter builds
 (`LUA_LIB`, `LUA_LIB_NAME`, `LUA_LINK=static`), and every binary in `src/bin/` is
 an example. `tests/bless.sh` and `tests/bless_overrides.sh` handle all languages.
 Warnings are errors (`-Wall -Wextra -Werror`).
+
+## Host examples (Part 4)
+
+Part 4 examples run inside real applications, installed (pinned) by
+`scripts/install-hosts.sh`:
+
+```lua
+-- host: nvim        run with `nvim --headless --clean -l name.lua`, compare stdout
+-- host: redis       (any other host) not run on its own: a *.test.sh driver uses it
+```
+
+```bash
+# host: openresty, redis    first line(s) of name.test.sh: the hosts it needs
+. ./openresty.sh            # drivers are plain bash, run from their directory;
+or_start || exit 1          # stdout is compared with name.expected
+```
+
+- Drivers must be deterministic: no timestamps, addresses, timings or hash-order
+  output in stdout (sort it, or print a yes/no check instead).
+- The runner starts one Redis server on `$REDIS_PORT` for the whole run and flushes
+  it (data, scripts, functions) before every test that lists `redis`.
+- A missing host makes its tests **skip** (and the badge says so); never paste
+  output that was not produced by the host.
+- Under `nvim -l`, `print()` goes to stderr: write test output with `io.write`.

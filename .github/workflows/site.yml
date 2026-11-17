@@ -40,6 +40,20 @@ jobs:
           sudo ln -sf /opt/lua-5.4.9/bin/lua /usr/local/bin/lua5.4
           sudo ln -sf /opt/luajit-2.1/bin/luajit /usr/local/bin/luajit
 
+      - name: System packages for the Part 4 hosts (virtual X server, Mesa, OpenSSL headers)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb xauth libgl1 libegl1 libgl1-mesa-dri libssl-dev unzip
+
+      - name: Cache Part 4 hosts (Neovim, Redis, OpenResty, mpv, LÖVE, LuaRocks, StyLua)
+        uses: actions/cache@v6
+        with:
+          path: /opt/hosts
+          key: hosts-${{ runner.os }}-${{ hashFiles('scripts/install-hosts.sh', 'scripts/hosts/mpv-env.lock', 'scripts/install-interpreters.sh') }}
+
+      - name: Install pinned hosts (skips anything already in the cache)
+        run: scripts/install-hosts.sh
+
       - name: Set up Rust (Lesson 22)
         run: |
           rustup toolchain install stable --profile minimal
@@ -61,8 +75,17 @@ jobs:
           g++ --version | head -1
           rustc --version
           cargo --version
+          nvim --version | head -1
+          redis-server --version
+          openresty -v
+          mpv --version | head -1
+          love --version
+          luarocks --version | head -1
+          busted --version
+          luacheck --version | head -1
+          stylua --version
 
-      - name: Build and run every example on every interpreter (Lua, C, C++, Rust)
+      - name: Build and run every example (Lua, C, C++, Rust) and every host test
         run: tests/run_all.sh
 
       - name: Check committed test badges are up to date

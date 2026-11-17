@@ -1,0 +1,10 @@
+-- host: busted
+-- busted reads this file (a Lua table of run profiles) from the project root.
+return {
+  _all = {
+    lpath = "src/?.lua;src/?/init.lua",  -- test the source tree, not an installed rock
+  },
+  default = {
+    ROOT = { "spec" },
+  },
+}

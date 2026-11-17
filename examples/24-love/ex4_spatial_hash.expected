@@ -1,0 +1,3 @@
+brute force: 53 overlaps, 19900 checks
+spatial hash: 53 overlaps, 190 checks
+same pairs:	true

@@ -1,0 +1,26 @@
+--- redis-cli --eval: keys before the comma, args after
+1) "keys=1"
+2) "argv=2"
+3) "hello, world"
+--- EVAL with the script text and numkeys
+1) "keys=1"
+2) "argv=2"
+3) "hi, there"
+--- SCRIPT LOAD caches it; the id is the SHA1 of the script text
+sha matches sha1sum: yes
+1) "keys=1"
+2) "argv=2"
+3) "hey, you"
+1) (integer) 1
+2) (integer) 0
+--- after SCRIPT FLUSH the client must fall back to EVAL
+OK
+(error) NOSCRIPT No matching script. Please use EVAL.
+--- Redis's Lua is 5.1, with a few libraries preloaded
+1) "Lua 5.1"
+2) "table"
+3) "table"
+4) "table"
+5) "table"
+6) "function"
+7) "nil"

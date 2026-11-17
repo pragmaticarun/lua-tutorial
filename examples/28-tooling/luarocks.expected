@@ -1,0 +1,14 @@
+--- luarocks lint
+rockspec OK
+--- luarocks make for Lua 5.4 (lua-5.4.9)
+installed
+textkit	0.1.0-1
+Lua 5.4	0.1.0	built-with-luarocks	a b|c d
+--- luarocks make for Lua 5.5 (lua-5.5.1)
+installed
+textkit	0.1.0-1
+Lua 5.5	0.1.0	built-with-luarocks	a b|c d
+--- luarocks make for Lua 5.1 (luajit-2.1)
+installed
+textkit	0.1.0-1
+Lua 5.1	0.1.0	built-with-luarocks	a b|c d

@@ -1,0 +1,47 @@
+--- /echo
+method: POST
+uri: /echo  args: tag=a&tag=b&q=lua
+arg q = lua
+arg tag = a,b
+header x-demo = 42  (h.X_Demo also works: 42)
+json n = 3
+json name = ann
+
+[200]
+--- /counter (shared dict)
+hits: 1
+flash: (none)
+
+[200]
+hits: 2
+flash: (none)
+
+[200]
+hits: 1
+flash: visible for 1s
+
+[200]
+hits: 3
+flash: (none)
+
+[200]
+--- /re (ngx.re)
+user=ann host=example.org whole=ann@example.org
+masked: mail+ann@example.org+at+##:## (4 digits)
+mail;ann;example;org;at;
+
+[200]
+--- /status
+HTTP/1.1 201 Created
+Content-Type: application/json
+X-Powered-By: Lua
+X-Powered-By: OpenResty
+{"created":true}
+--- /sub (subrequests)
+200 internal /internal/a args=x=1
+200 internal /internal/b args=y=2
+
+[200]
+--- internal locations are hidden from clients
+
+[404]

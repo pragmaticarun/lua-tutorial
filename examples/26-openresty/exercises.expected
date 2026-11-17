@@ -1,0 +1,37 @@
+--- ex1: validation
+{"greeting":"welcome, Ann"}
+
+[201]
+{"errors":["name: required string","age: integer 0-150"]}
+
+[400]
+{"error":"invalid JSON"}
+
+[400]
+{"error":"expected application\/json"}
+
+[415]
+{"error":"POST only"}
+
+[405]
+--- ex2: per-path hits
+3 /ex2/a
+2 /ex2/b
+1 /ex2/c
+
+[200]
+--- ex3: cache-aside
+X-Cache: MISS
+12^2 = 144
+X-Cache: HIT
+12^2 = 144
+--- ex4: HMAC signatures
+signed request accepted for /ex4/signed
+
+[200]
+bad signature
+
+[401]
+timestamp outside the replay window
+
+[401]

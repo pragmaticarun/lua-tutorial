@@ -1,0 +1,3 @@
+code.lua "local a = 1\nreturn a\n\n" cursor { 2, 3 }
+notes.md "line one  \nline two  \n" cursor { 2, 3 }
+search history untouched: true

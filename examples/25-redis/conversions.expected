@@ -1,0 +1,32 @@
+--- integer
+(integer) 42
+--- float
+(integer) 3
+--- float_s
+"3.99"
+--- true
+(integer) 1
+--- false
+(nil)
+--- nil
+(nil)
+--- array
+1) (integer) 1
+2) "two"
+3) 1) (integer) 3
+   2) (integer) 4
+--- holes
+1) (integer) 1
+2) (integer) 2
+--- map
+(empty array)
+--- status
+ALL GOOD
+--- err
+(error) BADTHING went wrong
+--- from_redis
+1) "number"
+2) "string"
+3) "false"
+4) "table:OK"
+5) (integer) 2

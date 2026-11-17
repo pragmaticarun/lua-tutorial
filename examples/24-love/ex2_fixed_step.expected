@@ -1,0 +1,4 @@
+smooth   frames=60 steps=60 x=30.00 drawn=29.50
+jittery  frames=30 steps=30 x=15.00 drawn=14.50
+slow     frames= 6 steps=60 x=30.00 drawn=29.50
+partial  frames= 3 steps=2 x=1.00 drawn=0.75

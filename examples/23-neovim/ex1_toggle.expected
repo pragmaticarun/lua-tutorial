@@ -1,0 +1,6 @@
+wrap before: true
+wrap after <leader>tw: false
+spell = true
+spell = false
+ignorecase toggled: true
+bad option: shiftwidth is not a boolean option

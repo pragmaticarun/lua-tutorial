@@ -1,0 +1,9 @@
+waited ok: true
+1 sync
+2 scheduled
+3 child exited 3: from-child
+4 deferred 20ms
+5 timer ticked 3 times, api ok: true
+sync child: 0 a-b
+in fast event: true, ok=false, E5560
+fast event now? false

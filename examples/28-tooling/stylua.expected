@@ -1,0 +1,45 @@
+--- textkit is formatted
+stylua --check: OK
+--- --check on the messy file prints a diff and fails
+Diff in ../bad/messy.lua:
+1   1    | -- host: luacheck
+2   2    | -- Deliberately bad code for luacheck and StyLua to complain about.
+3   3    | local unused = 1
+4        |-local  function area( w,h )
+5        |-  result = w*h   -- oops: global assignment
+    4    |+local function area(w, h)
+    5    |+  result = w * h -- oops: global assignment
+6   6    |   return result
+7   7    | end
+8   8    | local function greet(name, greeting)
+9        |-    if name == nil then return 'nobody' end
+10       |-    local name = name:upper()
+11       |-  return greeting..', '..name
+    9    |+  if name == nil then
+    10   |+    return "nobody"
+    11   |+  end
+    12   |+  local name = name:upper()
+    13   |+  return greeting .. ", " .. name
+12  14   | end
+13       |-print(area(2,3), greet("ann", "hi"), undefined_thing)
+    15   |+print(area(2, 3), greet("ann", "hi"), undefined_thing)
+exit status: 1
+--- formatting from stdin (uses the .stylua.toml found from the cwd)
+-- host: luacheck
+-- Deliberately bad code for luacheck and StyLua to complain about.
+local unused = 1
+local function area(w, h)
+  result = w * h -- oops: global assignment
+  return result
+end
+local function greet(name, greeting)
+  if name == nil then
+    return "nobody"
+  end
+  local name = name:upper()
+  return greeting .. ", " .. name
+end
+print(area(2, 3), greet("ann", "hi"), undefined_thing)
+--- StyLua 2.6 has no Lua 5.5 syntax mode: 'global' declarations do not parse
+error: could not format from stdin: failed to format from stdin: error parsing: unexpected token `x` unexpected expression when looking for a statement
+exit status: 2

@@ -1,0 +1,10 @@
+[events] script name: events
+[events] event start-file
+[events] event file-loaded
+[events] event playback-restart
+[events] event seek
+[events] event playback-restart
+[events] position after seek is within 0.2 s of 1.0: true
+[events] event end-file reason=quit
+[events] event shutdown
+mpv exit code: 4

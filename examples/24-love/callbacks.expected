@@ -1,0 +1,10 @@
+[frame 0] love.load (0 game args), window 800x600
+[frame 0] love.keypressed space (scancode space, repeat false)
+[frame 1] love.update dt>0: true
+[frame 1] love.draw
+[frame 2] love.update dt>0: true
+[frame 2] love.draw
+[frame 3] love.update dt>0: true
+[frame 3] love.draw
+[frame 3] love.quit
+exit status: 0
