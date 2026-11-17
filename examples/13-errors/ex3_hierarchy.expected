@@ -1,0 +1,3 @@
+retry later ->	NetworkError: connection reset
+report to user ->	IOError: disk full
+bug ->	ex3_hierarchy.lua:22: plain string

@@ -1,0 +1,6 @@
+open a.wav
+close a.wav
+read a.wav
+open b.wav
+close b.wav
+false	corrupt header

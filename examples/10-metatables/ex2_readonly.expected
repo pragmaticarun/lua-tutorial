@@ -1,0 +1,3 @@
+44100	48000
+false	ex2_readonly.lua:11: attempt to modify read-only field 'cd'
+false

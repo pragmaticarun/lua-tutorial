@@ -1,0 +1,11 @@
+word   codec
+punct  =
+word   av1
+punct  ;
+word   title
+punct  =
+string My Talk
+punct  ;
+word   crf
+punct  =
+word   30

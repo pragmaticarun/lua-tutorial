@@ -1,0 +1,2 @@
+1	6	7
+false	colon.lua:5: attempt to index a number value (local 'self')

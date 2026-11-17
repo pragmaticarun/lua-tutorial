@@ -17,11 +17,11 @@ jobs:
   test-and-build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Cache interpreters
         id: cache-lua
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             /opt/lua-5.5.1
@@ -46,7 +46,7 @@ jobs:
       - name: Check committed test badges are up to date
         run: git diff --exit-code -- includes/badges
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -57,7 +57,7 @@ jobs:
       - name: Build site (strict)
         run: mkdocs build --strict
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
 
@@ -73,4 +73,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

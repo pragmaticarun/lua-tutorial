@@ -95,7 +95,16 @@ nav:
       - "7. Patterns": part1/07-patterns.md
       - "8. Functions": part1/08-functions.md
       - "9. Closures and Upvalues": part1/09-closures.md
-  - "Part 2: The Lua Way": part2/index.md
+  - "Part 2: The Lua Way":
+      - part2/index.md
+      - "10. Metatables and Metamethods": part2/10-metatables.md
+      - "11. OOP with Prototypes": part2/11-oop.md
+      - "12. Modules and require": part2/12-modules.md
+      - "13. Error Handling": part2/13-errors.md
+      - "14. Iterators and Coroutines": part2/14-coroutines.md
+      - "15. Standard Library Tour": part2/15-stdlib.md
+      - "16. Garbage Collection": part2/16-gc.md
+      - "17. Performance": part2/17-performance.md
   - "Part 3: Systems Lua": part3/index.md
   - "Part 4: Real World": part4/index.md
   - Projects: projects/index.md

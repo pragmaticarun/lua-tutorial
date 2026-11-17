@@ -1,0 +1,5 @@
+debug_info.lua	Lua	2	4
+params:	2	vararg:	true
+locals:	width, height, (vararg table), factor, info, names, (for state), (for state), i
+counter	0
+42

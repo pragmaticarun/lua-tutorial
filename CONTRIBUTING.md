@@ -22,6 +22,8 @@ tests/results/versions.txt            interpreter versions from the last run
 ```lua
 -- targets: 5.5, 5.4      -- only run on these interpreters (default: all three)
 -- stdin: name.input      -- feed this file on stdin
+-- module                 -- a library file used via require by other examples;
+                          -- the runner does not execute it directly
 ```
 
 Use `targets` only for code that cannot run elsewhere (new syntax or library

@@ -1,0 +1,11 @@
+false
+traceback.lua:2: deep failure
+stack traceback:
+	[C]: in global 'error'
+	traceback.lua:2: in upvalue 'lvl3'
+	traceback.lua:3: in upvalue 'lvl2'
+	traceback.lua:4: in function <traceback.lua:4>
+	[C]: in global 'xpcall'
+	traceback.lua:6: in main chunk
+	[C]: in ?
+true	5

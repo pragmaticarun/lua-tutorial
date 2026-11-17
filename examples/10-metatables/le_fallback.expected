@@ -1,0 +1,2 @@
+a < b 	true
+a <= b	false	le_fallback.lua:6: attempt to compare two table values

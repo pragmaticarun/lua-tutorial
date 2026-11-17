@@ -1,0 +1,8 @@
+finalize	c
+finalize	b
+finalize	a
+--
+late finalizer ignored
+resurrected:	zombie
+end of chunk
+finalize	at-exit

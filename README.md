@@ -8,7 +8,8 @@ is the expected output the tests compare against.
 ## Status
 
 - Part 1 (Foundations, lessons 1–9): written and tested.
-- Parts 2–4 and Projects: outlined, coming soon.
+- Part 2 (The Lua Way, lessons 10–17): written and tested.
+- Parts 3–4 and Projects: outlined, coming soon.
 
 ## Quick start
 
@@ -16,6 +17,7 @@ is the expected output the tests compare against.
 sudo apt install build-essential curl git python3-venv
 scripts/install-interpreters.sh          # builds lua5.5, lua5.4, luajit under /opt
 tests/run_all.sh                         # runs every example on every interpreter
+tests/bench.sh                           # re-measures the Lesson 17 benchmarks
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/mkdocs serve                   # http://127.0.0.1:8000
 ```

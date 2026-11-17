@@ -1,0 +1,8 @@
+[  0] decoder: frame 1
+[  0] osd: refresh 1
+[ 40] decoder: frame 2
+[ 50] osd: refresh 2
+[ 80] decoder: frame 3
+[100] osd: refresh 3
+[100] watchdog crashed: no input for 100 ticks
+[120] decoder: frame 4

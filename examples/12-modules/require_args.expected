@@ -1,0 +1,3 @@
+module chunk got 2 argument(s):	args_module	./args_module.lua
+require's second result:	./args_module.lua
+searchers:	true	loaders:	false

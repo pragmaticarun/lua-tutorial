@@ -1,0 +1,5 @@
+nil
+  input: required string
+  fps: must be a positive number
+  codec: unsupported
+true

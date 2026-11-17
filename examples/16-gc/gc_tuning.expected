@@ -1,0 +1,5 @@
+Lua 5.5
+pause	250
+stepmul	200
+minormul	20
+set pause 150, old:	250

@@ -38,6 +38,25 @@ pinned LuaJIT 2.1.1794386141 build from [Setup](setup.md).
 | `__len` / `__pairs` on tables | yes | yes | no (5.1 semantics) | below |
 | `collectgarbage("generational")` | yes | yes | no | below |
 | `collectgarbage("param", …)` | yes (new) | no | no | below |
+| `a <= b` with only `__lt` defined | **error** (needs `__le`) | works (`LUA_COMPAT_LT_LE`) | works | [L10](part2/10-metatables.md) |
+| `__eq` on objects with different metamethods | first operand's, else second's | same | only if both share the same `__eq` | [L10](part2/10-metatables.md) |
+| Chains of `__call` | up to 15 objects | yes | no | [L10](part2/10-metatables.md) |
+| `__name` in error messages, bit-operator metamethods | yes | yes | no | [L10](part2/10-metatables.md) |
+| `__close` / `<close>` | yes | yes | no | [L10](part2/10-metatables.md), [L13](part2/13-errors.md) |
+| `require` passes/returns the loader data (file path) | yes | yes | no (one value) | [L12](part2/12-modules.md) |
+| Module searchers | `package.searchers` | `package.searchers` | `package.loaders` | [L12](part2/12-modules.md) |
+| `assert(false, msg)` adds position | yes | yes | no | [L13](part2/13-errors.md) |
+| Traceback frame names | `in global 'error'`, `in upvalue 'f'` | `in function 'error'`, `in upvalue 'f'` | `in function 'f'`, ends `[C]: at 0x…` | [L13](part2/13-errors.md) |
+| `error(42)` (number) | number unchanged | number unchanged | converted to a positioned string | [L13](part2/13-errors.md) |
+| `coroutine.running()` in main | main thread, `true` | main thread, `true` | `nil` | [L14](part2/14-coroutines.md) |
+| `coroutine.close`, 4th `for` value (closing) | yes | yes | no | [L14](part2/14-coroutines.md) |
+| `os.execute` result | `true\|nil, "exit", code` | same | raw status (`768`) | [L15](part2/15-stdlib.md) |
+| `math.randomseed(42)` sequence | xoshiro256** | same as 5.5 | different (Tausworthe) | [L15](part2/15-stdlib.md) |
+| `math.floor`/`ceil` result | integer | integer | float (printed without `.0`) | [L15](part2/15-stdlib.md) |
+| Hidden loop locals in `debug.getlocal` | `(for state)` ×2, `(vararg table)` | `(for state)` ×3 | `(for index)`, `(for limit)`, `(for step)` | [L15](part2/15-stdlib.md) |
+| `setpause` / `setstepmul` | removed | yes (deprecated) | yes | [L16](part2/16-gc.md) |
+| Ephemeron tables | yes | yes | **no** (weak-key value keeps key alive) | [L16](part2/16-gc.md) |
+| `__gc` on tables | yes | yes | **no** (userdata, `newproxy`, `ffi.gc`) | [L16](part2/16-gc.md) |
 
 ## Feature detection
 
@@ -160,5 +179,5 @@ short function expressions `|a, b| -> a + b`, and underscores in numbers.
 From the Lua 5.5 readme and manual §8, still to be demonstrated in later parts:
 incremental major collections, more compact arrays (about 60% less memory for
 large arrays), external strings, `luaL_openselectedlibs` / `luaL_makeseed`,
-`lua_newstate` taking a seed argument, and at most 15 objects in a chain of
-`__call` metamethods.
+`lua_newstate` taking a seed argument. (The 15-object limit on `__call` chains, the
+`"param"` GC option and `table.create` are covered in Lessons 10, 16 and 17.)

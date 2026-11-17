@@ -1,0 +1,7 @@
+decoder sends frame	1
+encoder got	frame1
+decoder sends frame	2
+encoder got	frame2
+decoder sends frame	3
+encoder got	frame3
+encoder done

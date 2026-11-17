@@ -1,0 +1,11 @@
+open  decoder
+open  output
+working
+close output
+close decoder
+open  file
+close file (error: disk full)
+false	disk full
+open  early
+close early
+returned

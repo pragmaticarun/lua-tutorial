@@ -1,0 +1,3 @@
+table __gc ignored
+proxy finalized
+freed buffers:	1

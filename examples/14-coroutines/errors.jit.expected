@@ -1,0 +1,5 @@
+false	table	7	dead
+false	boom
+true	from inside pcall
+true	true	resumed
+false	errors.lua:19: attempt to yield across C-call boundary

@@ -1,0 +1,10 @@
+suspended
+started with	1	2
+true	3
+suspended
+resumed with	10
+true	20
+resumed with	x	y
+true	done
+dead
+false	cannot resume dead coroutine

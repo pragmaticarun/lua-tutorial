@@ -1,0 +1,4 @@
+start-up mode:	generational
+now:	incremental
+now:	generational
+weak entry collected:	true

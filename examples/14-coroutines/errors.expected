@@ -1,0 +1,5 @@
+false	table	7	dead
+false	boom
+true	from inside pcall
+true	true	resumed
+false	attempt to yield across a C-call boundary

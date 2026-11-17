@@ -1,0 +1,4 @@
+using	camera	open:	1
+released	camera	via	__close
+released	mic	via	__gc
+open:	0

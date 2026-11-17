@@ -1,0 +1,10 @@
+./mediainfo/codecs.lua
+nil	
+	no file './nope.lua'
+	no file './nope/init.lua'
+directory separator:	/
+false	module 'nope' not found:
+	no field package.preload['nope']
+	no file './nope.lua'
+	no file './nope/init.lua'
+	no file './nope.so'

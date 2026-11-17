@@ -1,0 +1,11 @@
+false
+traceback.lua:2: deep failure
+stack traceback:
+	[C]: in function 'error'
+	traceback.lua:2: in function 'lvl3'
+	traceback.lua:3: in function 'lvl2'
+	traceback.lua:4: in function <traceback.lua:4>
+	[C]: in function 'xpcall'
+	traceback.lua:6: in main chunk
+	[C]: at ADDR
+true	5

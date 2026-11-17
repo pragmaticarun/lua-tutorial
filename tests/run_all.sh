@@ -9,6 +9,9 @@
 #                                         <id> is one of: 5.5 5.4 jit
 #   first lines may contain:  -- targets: 5.5, 5.4    (default: all)
 #                             -- stdin: name.input    (file fed on stdin)
+#                             -- module               (a library file loaded with
+#                                                      require by other examples;
+#                                                      not run on its own)
 #
 # Interpreter binaries can be overridden with LUA55, LUA54, LUAJIT.
 # Usage: tests/run_all.sh [-v] [filter-substring]
@@ -49,7 +52,9 @@ targets_of() {
 while IFS= read -r f; do
   rel=${f#./}
   [[ -n "$FILTER" && "$rel" != *"$FILTER"* ]] && continue
-  dir=$(dirname "$rel"); base=$(basename "$rel" .lua); lesson=$(basename "$dir")
+  if head -5 "$rel" | grep -q '^-- *module *$'; then continue; fi
+  dir=$(dirname "$rel"); base=$(basename "$rel" .lua)
+  lesson=${rel#examples/}; lesson=${lesson%%/*}
   default_exp="$dir/$base.expected"
   if [[ ! -f "$default_exp" ]]; then
     echo "MISSING expected file: $default_exp" >&2

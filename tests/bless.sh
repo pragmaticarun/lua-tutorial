@@ -8,6 +8,7 @@ cd "$(dirname "$0")/.."
 declare -A BIN=( [5.5]="${LUA55:-lua5.5}" [5.4]="${LUA54:-lua5.4}" [jit]="${LUAJIT:-luajit}" )
 find examples -name '*.lua' | sort | while read -r f; do
   [[ -n "${1:-}" && "$f" != *"$1"* ]] && continue
+  if head -5 "$f" | grep -q '^-- *module *$'; then continue; fi
   dir=$(dirname "$f"); base=$(basename "$f" .lua)
   [[ -f "$dir/$base.expected" ]] && continue
   t=$(head -5 "$f" | sed -n 's/^-- *targets: *//p' | head -1 | tr ',' ' ')

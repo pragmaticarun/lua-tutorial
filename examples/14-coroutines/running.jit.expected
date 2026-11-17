@@ -1,0 +1,4 @@
+main thread:	nil	nil
+isyieldable in main:	false
+true
+coroutine.close available:	false

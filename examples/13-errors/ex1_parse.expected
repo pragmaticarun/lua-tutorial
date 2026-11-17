@@ -1,0 +1,4 @@
+1920	1080
+nil	bad resolution "1920*1080" (want WxH)
+nil	zero dimension in 0x720
+nil	expected a string, got number

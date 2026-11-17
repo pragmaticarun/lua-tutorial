@@ -1,0 +1,4 @@
+main thread:	thread	true
+isyieldable in main:	false
+true
+coroutine.close available:	true
