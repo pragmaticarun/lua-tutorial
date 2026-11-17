@@ -1,0 +1,3 @@
+3628800
+false	local_function.lua:10: attempt to call global 'broken' (a nil value)
+true	true

@@ -1,0 +1,10 @@
+nil  	falsy
+false	falsy
+0    	truthy
+''   	truthy
+{}   	truthy
+default	nil	0
+2	nil	false
+hello, world	hello, Lua
+verbose:	true
+verbose:	false

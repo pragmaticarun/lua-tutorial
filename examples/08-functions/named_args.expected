@@ -1,0 +1,3 @@
+ffmpeg -i in.mov -c:v h264 -crf 23 -preset medium
+ffmpeg -i in.mov -c:v libx265 -crf 28 -preset medium
+false	named_args.lua:6: input is required

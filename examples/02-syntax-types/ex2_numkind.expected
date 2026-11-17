@@ -1,0 +1,4 @@
+42	integer
+42.0	float
+2.5	float
+42	not a number

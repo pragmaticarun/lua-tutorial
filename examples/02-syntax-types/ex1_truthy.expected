@@ -1,0 +1,6 @@
+1	nil	falsy
+2	false	falsy
+3	0	truthy
+4	""	truthy
+5	"false"	truthy
+6	{}	truthy

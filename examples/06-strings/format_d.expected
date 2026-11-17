@@ -1,0 +1,2 @@
+true	3
+false	bad argument #2 to 'string.format' (number has no integer representation)

@@ -1,0 +1,7 @@
+1	h264
+2	hevc
+3	av1
+av1	4500
+h264	8000
+hevc	5000
+ipairs saw	2

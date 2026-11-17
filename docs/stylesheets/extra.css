@@ -1,0 +1,8 @@
+/* Slightly tighter code output blocks and a highlight for "Tested with" badges */
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary {
+  font-weight: 600;
+}
+.md-typeset table:not([class]) th {
+  white-space: nowrap;
+}

@@ -1,0 +1,18 @@
+math.type        false
+math.ult         false
+math.pow         true
+utf8             false
+string.pack      false
+table.pack       false
+table.unpack     false
+unpack           true
+table.move       true
+table.create     false
+setfenv          true
+loadstring       true
+bit              true
+jit              true
+7 // 2           syntax error
+1 << 4           true
+coroutine.close  false
+warn             false

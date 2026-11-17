@@ -1,0 +1,9 @@
+single
+double "escaped"	tab
+long bracket string:
+no escapes \n here
+can contain ]] safely
+Hi	Hi	Hi
+5	0
+concat23
+true	31	35	nil

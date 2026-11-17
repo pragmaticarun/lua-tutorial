@@ -1,0 +1,6 @@
+7	16	15	-1
+nil	default	big
+1 3 5 
+1000000	false	true	true
+5
+3	nil	[string "const y = 1; y = 2"]:1: attempt to assign to const variable 'y'

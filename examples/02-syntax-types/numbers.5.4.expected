@@ -1,0 +1,9 @@
+3	3.0	integer	float
+5.0	3	3.0	-4
+8.0	1	2
+true	3	nil
+9223372036854775807	true
+true	9.2233720368548e+18
+false	numbers.lua:9: attempt to divide by zero
+inf	-inf
+11	4.0	1020

@@ -1,0 +1,1 @@
+compile error:	loop:3: attempt to assign to const variable 'i'

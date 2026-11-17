@@ -1,0 +1,4 @@
+version:	Lua 5.5
+LuaJIT:	false
+integer division operator:	true
+utf8 library:	true

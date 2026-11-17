@@ -1,0 +1,76 @@
+name: Test examples and deploy site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache interpreters
+        id: cache-lua
+        uses: actions/cache@v4
+        with:
+          path: |
+            /opt/lua-5.5.1
+            /opt/lua-5.4.9
+            /opt/luajit-2.1
+          key: lua-${{ runner.os }}-${{ hashFiles('scripts/install-interpreters.sh') }}
+
+      - name: Build Lua 5.5, Lua 5.4 and LuaJIT 2.1
+        if: steps.cache-lua.outputs.cache-hit != 'true'
+        run: scripts/install-interpreters.sh
+
+      - name: Link cached interpreters
+        if: steps.cache-lua.outputs.cache-hit == 'true'
+        run: |
+          sudo ln -sf /opt/lua-5.5.1/bin/lua /usr/local/bin/lua5.5
+          sudo ln -sf /opt/lua-5.4.9/bin/lua /usr/local/bin/lua5.4
+          sudo ln -sf /opt/luajit-2.1/bin/luajit /usr/local/bin/luajit
+
+      - name: Run every example on every interpreter
+        run: tests/run_all.sh
+
+      - name: Check committed test badges are up to date
+        run: git diff --exit-code -- includes/badges
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install MkDocs Material
+        run: pip install -r requirements.txt
+
+      - name: Build site (strict)
+        run: mkdocs build --strict
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

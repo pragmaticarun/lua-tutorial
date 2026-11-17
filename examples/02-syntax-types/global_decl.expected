@@ -1,0 +1,4 @@
+compile error:	demo:3: variable 'summ' not declared
+compile error:	demo:4: attempt to assign to const variable 'math'
+runtime error:	demo:2: global 'print' already defined
+ran ok:	12

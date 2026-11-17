@@ -1,0 +1,9 @@
+[   42] [42   ] [00042]
+[   3.142] [1.23e+05] [0.0001] [1e+20]
+[     right] [left      ] [tru]
+ff FF 0xff 10
+Lua
+nil true true
+"say \"hi\"\
+\9bye"
+ 99.4%
