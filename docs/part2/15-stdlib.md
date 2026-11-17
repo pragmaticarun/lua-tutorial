@@ -142,7 +142,10 @@ integers on 5.4/5.5 when the result fits. Also available: `math.tointeger`,
 
 Lua 5.4+ uses the xoshiro256\*\* generator and seeds it randomly at start-up;
 LuaJIT uses its own Tausworthe generator with a fixed default seed. A seed
-reproduces a sequence only on the same implementation. If tests or replays need
+reproduces a sequence only on the same implementation, and for LuaJIT not even
+reliably across machines: with the same LuaJIT commit, `math.random(1, 100)` after
+`math.randomseed(42)` gave `96 1 54` on the machine that wrote this course and
+`96 1 55` on the GitHub Actions runner. If tests or replays need
 identical numbers everywhere, ship your own generator (Exercise 5).
 
 ## `debug`: introspection
